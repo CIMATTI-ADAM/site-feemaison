@@ -1,4 +1,4 @@
-import { ArrowRight, Clock, Heart, Leaf, Users, Sparkles, ChefHat } from 'lucide-react';
+import { ArrowRight, Clock, Heart, Leaf, Users, Sparkles } from 'lucide-react';
 import { Link } from '../lib/router';
 import { useSEO } from '../lib/seo';
 import { siteConfig } from '../config/siteConfig';
@@ -101,7 +101,13 @@ export function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brown-900/60 to-transparent" />
                 <div className="absolute bottom-4 left-4 flex items-center gap-2 text-cream-50">
-                  <ChefHat size={20} />
+                  <img
+                    src="/images/logo/fee-maison-cuisiniere-filigrane.png"
+                    alt="Fée Maison"
+                    aria-hidden="true"
+                    className="h-40 w-40 object-contain opacity-100 border-4 border-red-500"
+                    />
+                  
                   <span className="font-serif text-lg">Batchcooking à domicile</span>
                 </div>
               </div>
@@ -133,7 +139,7 @@ export function HomePage() {
               </div>
               <div className="p-6 md:p-8">
                 <p className="text-brown-600 leading-relaxed mb-5">
-                  Des menus sur mesure pour vos anniversaires, fêtes, séjours bien-être, retraites
+                  Des menus sur mesure pour vos anniversaires, fêtes amicales et familiales, mais aussi séjours bien-être, retraites
                   yoga, séminaires et stages.
                 </p>
                 <span className="inline-flex items-center gap-2 text-terracotta-600 font-semibold group-hover:gap-3 transition-all">

@@ -1,4 +1,4 @@
-@import "./styles/theme.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,26 +17,35 @@
   }
 
   h1, h2, h3, h4 {
-    @apply font-serif;
+    @apply font-serif font-semibold tracking-tight;
+  }
+  
+  h1 {
+  line-height: 1.02;
+  }
+
+  h2,
+  h3 {
+  line-height: 1.08;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center gap-2 bg-terracotta-600 text-white px-6 py-3 rounded-full font-sans font-semibold text-sm tracking-wide transition-all duration-300 hover:bg-terracotta-700 hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-terracotta-500 focus:ring-offset-2;
+    @apply inline-flex items-center gap-2 bg-terracotta-600 text-white px-6 py-3 rounded-full font-sans font-semibold text-[0.9rem] tracking-[0.03em] transition-all duration-300 hover:bg-terracotta-700 hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-sage-500 focus:ring-offset-2;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center gap-2 border-2 border-terracotta-600 text-terracotta-600 px-6 py-3 rounded-full font-sans font-semibold text-sm tracking-wide transition-all duration-300 hover:bg-terracotta-600 hover:text-white hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-terracotta-500 focus:ring-offset-2;
-  }
+  @apply inline-flex items-center gap-2 border-2 border-sage-600 text-sage-700 px-6 py-3 rounded-full font-sans font-semibold text-[0.9rem] tracking-[0.03em] transition-all duration-300 hover:bg-sage-600 hover:text-white hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-sage-500 focus:ring-offset-2;
+}
 
   .btn-outline-cream {
-    @apply inline-flex items-center gap-2 border-2 border-cream-100 text-cream-100 px-6 py-3 rounded-full font-sans font-semibold text-sm tracking-wide transition-all duration-300 hover:bg-cream-100 hover:text-brown-800 hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-cream-200 focus:ring-offset-2;
+    @apply inline-flex items-center gap-2 border-2 border-cream-100 text-cream-100 px-6 py-3 rounded-full font-sans font-semibold text-[0.9rem] tracking-[0.03em] transition-all duration-300 hover:bg-cream-100 hover:text-brown-800 hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-cream-200 focus:ring-offset-2;
   }
 
   .section-title {
-    @apply font-serif text-3xl md:text-4xl text-brown-800 leading-tight;
-  }
+  @apply font-serif text-4xl md:text-5xl font-semibold text-terracotta-600 leading-[1.05] tracking-tight;
+}
 
   .section-subtitle {
     @apply text-lg text-brown-600 leading-relaxed;
@@ -47,7 +56,7 @@
   }
 
   .input-field {
-    @apply w-full px-4 py-3 border border-beige-300 rounded-xl bg-white text-brown-800 placeholder-beige-400 focus:outline-none focus:ring-2 focus:ring-terracotta-400 focus:border-transparent transition-all duration-200;
+    @apply w-full px-4 py-3 border border-beige-300 rounded-xl bg-white text-brown-800 placeholder-beige-400 focus:outline-none focus:ring-2 focus:ring-sage-500 focus:border-transparent transition-all duration-200;
   }
 
   .label-field {
@@ -55,12 +64,12 @@
   }
 
   .divider {
-    @apply w-16 h-1 bg-terracotta-500 rounded-full mx-auto my-4;
-  }
+  @apply w-16 h-1 bg-terracotta-500 rounded-full mx-auto my-4;
+}
 
-  .divider-left {
-    @apply w-16 h-1 bg-terracotta-500 rounded-full my-4;
-  }
+.divider-left {
+  @apply w-16 h-1 bg-terracotta-500 rounded-full my-4;
+}
 }
 
 /* Animations d'entrée au scroll */
@@ -121,11 +130,11 @@
 
 .prose-legal li::before {
   content: '•';
-  @apply text-terracotta-500 font-bold mt-0.5 flex-shrink-0;
+  @apply text-sage-600 font-bold mt-0.5 flex-shrink-0;
 }
 
 .prose-legal a {
-  @apply text-terracotta-600 font-semibold underline hover:text-terracotta-700 transition-colors;
+  @apply text-sage-700 font-semibold underline hover:text-sage-800 transition-colors;
 }
 
 .prose-legal strong {

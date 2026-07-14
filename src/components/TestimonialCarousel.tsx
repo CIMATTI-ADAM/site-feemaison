@@ -307,7 +307,7 @@ export function TestimonialCarousel() {
                 text-terracotta-700
                 shadow-md
                 transition
-                hover:bg-terracotta-50
+                hover:bg-sage-50
                 md:flex
               "
               aria-label="Afficher les avis précédents"
@@ -335,7 +335,7 @@ export function TestimonialCarousel() {
                 text-terracotta-700
                 shadow-md
                 transition
-                hover:bg-terracotta-50
+                hover:bg-sage-50
                 md:flex
               "
               aria-label="Afficher les avis suivants"
@@ -382,7 +382,7 @@ export function TestimonialCarousel() {
             justify-center
             gap-2
             rounded-full
-            bg-terracotta-600
+            bg-sage-600
             px-7
             py-3.5
             font-semibold
@@ -391,7 +391,7 @@ export function TestimonialCarousel() {
             transition-all
             duration-300
             hover:-translate-y-0.5
-            hover:bg-terracotta-700
+            hover:bg-sage-700
             hover:shadow-md
             focus:outline-none
             focus:ring-2

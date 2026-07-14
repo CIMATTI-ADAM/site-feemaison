@@ -1,94 +1,178 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+
   theme: {
     extend: {
+      /**
+       * ==========================================================
+       * CHARTE GRAPHIQUE NUMÉRIQUE — FÉE MAISON
+       * ==========================================================
+       *
+       * Ce fichier centralise les couleurs utilisées dans le site.
+       *
+       * Correspondances avec les anciens noms techniques :
+       *
+       * terracotta = bordeaux Fée Maison
+       * sage        = bleu canard
+       * cream       = crème et blanc cassé
+       * beige       = tons sable et beige rosé
+       * brown       = textes et bruns chauds
+       *
+       * Après une modification :
+       * 1. enregistrer avec Ctrl + S ;
+       * 2. arrêter npm run dev avec Ctrl + C ;
+       * 3. relancer npm run dev.
+       * ==========================================================
+       */
+
       colors: {
+        /**
+         * CRÈME ET BLANC CASSÉ
+         *
+         * Couleur de référence de la communication papier :
+         * #F7E4D6
+         */
         cream: {
-          50: '#fdfaf4',
-          100: '#faf4e8',
-          200: '#f5e8d1',
-          300: '#efd9b5',
-          400: '#e8c88d',
-          500: '#ddb06a',
-          600: '#c9923f',
-          700: '#a97431',
-          800: '#885c29',
-          900: '#6e4b23',
+          50: '#FFFDFC',
+          100: '#FCF7F3',
+          200: '#FAEFE7',
+          300: '#F7E4D6',
+          400: '#EFD8C8',
+          500: '#E8CDBB',
+          600: '#CDAA92',
+          700: '#AD876F',
+          800: '#896954',
+          900: '#674D3E',
         },
+
+        /**
+         * BEIGES CHAUDS
+         *
+         * Utilisés pour les bordures, cartes, séparateurs
+         * et fonds secondaires.
+         */
         beige: {
-          50: '#faf9f7',
-          100: '#f4f1ec',
-          200: '#e8e2d9',
-          300: '#d9cfc1',
-          400: '#c4b5a0',
-          500: '#ae9c83',
-          600: '#96826a',
-          700: '#7a6956',
-          800: '#635548',
-          900: '#51453c',
+          50: '#FFFCFA',
+          100: '#FBF5F0',
+          200: '#F3E7DE',
+          300: '#E8D6CA',
+          400: '#D8BEAD',
+          500: '#C5A28D',
+          600: '#AA836D',
+          700: '#896653',
+          800: '#6E5143',
+          900: '#584137',
         },
+
+        /**
+         * BORDEAUX FÉE MAISON
+         *
+         * Couleur de référence :
+         * #7F1F20
+         *
+         * Le nom "terracotta" est conservé dans le code afin de
+         * ne pas modifier toutes les classes Tailwind existantes.
+         */
         terracotta: {
-          50: '#fdf5f2',
-          100: '#fae8e2',
-          200: '#f5d0c5',
-          300: '#ecad9a',
-          400: '#e0806a',
-          500: '#cf5e47',
-          600: '#b84434',
-          700: '#98372b',
-          800: '#7d2f28',
-          900: '#682a25',
+          50: '#FCF5F4',
+          100: '#F7E9E8',
+          200: '#EED1D0',
+          300: '#DFAAA9',
+          400: '#C97979',
+          500: '#AA4A4C',
+          600: '#7F1F20',
+          700: '#651718',
+          800: '#571416',
+          900: '#471011',
         },
+
+        /**
+         * BLEU CANARD
+         *
+         * Couleur de référence :
+         * #18727D
+         *
+         * Le nom "sage" est conservé dans le code existant.
+         */
         sage: {
-          50: '#f4f6f3',
-          100: '#e6ebe3',
-          200: '#cdd8c8',
-          300: '#aabda3',
-          400: '#849e7c',
-          500: '#678260',
-          600: '#51694c',
-          700: '#41543e',
-          800: '#354434',
-          900: '#2d392c',
+          50: '#F0F8F8',
+          100: '#E0F0F1',
+          200: '#BEDDDF',
+          300: '#8FC2C6',
+          400: '#59A1A8',
+          500: '#32838B',
+          600: '#18727D',
+          700: '#125B64',
+          800: '#0E4D55',
+          900: '#0B4148',
         },
+
+        /**
+         * BRUNS ET TEXTES
+         *
+         * Évite l'utilisation d'un noir pur, trop dur pour
+         * l'univers chaleureux de Fée Maison.
+         */
         brown: {
-          50: '#f8f4f0',
-          100: '#f0e7de',
-          200: '#e0ccbb',
-          300: '#ccaa91',
-          400: '#b5896b',
-          500: '#a07050',
-          600: '#8a5e40',
-          700: '#704c36',
-          800: '#5c3f30',
-          900: '#4d362a',
+          50: '#FAF8F7',
+          100: '#F2ECE9',
+          200: '#E4D8D2',
+          300: '#CFBAB0',
+          400: '#AE9185',
+          500: '#8B6E64',
+          600: '#6B514A',
+          700: '#513C38',
+          800: '#3E302D',
+          900: '#302827',
         },
       },
+
       fontFamily: {
-        serif: ['Playfair Display', 'Georgia', 'serif'],
-        sans: ['Lato', 'system-ui', 'sans-serif'],
+        serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+        sans: ['Montserrat', 'Arial', 'system-ui', 'sans-serif'],
       },
+
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out',
         'slide-up': 'slideUp 0.6s ease-out',
         'slide-in-right': 'slideInRight 0.4s ease-out',
       },
+
       keyframes: {
         fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
+          '0%': {
+            opacity: '0',
+          },
+          '100%': {
+            opacity: '1',
+          },
         },
+
         slideUp: {
-          '0%': { opacity: '0', transform: 'translateY(20px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(20px)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0)',
+          },
         },
+
         slideInRight: {
-          '0%': { opacity: '0', transform: 'translateX(20px)' },
-          '100%': { opacity: '1', transform: 'translateX(0)' },
+          '0%': {
+            opacity: '0',
+            transform: 'translateX(20px)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateX(0)',
+          },
         },
       },
     },
   },
+
   plugins: [],
 };

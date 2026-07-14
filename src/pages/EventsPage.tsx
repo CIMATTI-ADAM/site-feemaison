@@ -59,7 +59,7 @@ export function EventsPage() {
             Une cuisine sur mesure pour vos moments de partage
           </h1>
           <p className="text-lg text-cream-100 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-            Anniversaires, fêtes, séjours bien-être, séminaires, stages : chaque prestation est
+            Anniversaires, fêtes amicales et familiales, mais aussi séjours bien-être, séminaires, stages : chaque prestation est
             pensée sur mesure, selon vos besoins et le rythme de votre groupe.
           </p>
         </div>
