@@ -1,4 +1,4 @@
-import { Clock, Heart, UtensilsCrossed, CalendarDays, Recycle, Smile, ShieldCheck, Coffee, Sparkles } from 'lucide-react';
+import { Clock, Heart, UtensilsCrossed, CalendarDays, Recycle, Smile, ShieldCheck, Coffee, Sparkles, Baby } from 'lucide-react';
 import { Link } from '../lib/router';
 import { useSEO } from '../lib/seo';
 import { siteConfig } from '../config/siteConfig';
@@ -130,7 +130,7 @@ export function BatchCookingPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {targetAudience.map((target) => (
               <div key={target} className="bg-white p-4 rounded-xl text-center shadow-sm hover:shadow-md transition-shadow">
-                <Baby size={24} className="mx-auto text-sage-500 mb-2" />
+                <Baby size={24} className="mx-autotext-sage-500 mb-2" />
                 <span className="text-brown-700 text-sm font-medium">{target}</span>
               </div>
             ))}

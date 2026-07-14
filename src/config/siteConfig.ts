@@ -8,7 +8,7 @@
 export const siteConfig = {
   // --- IDENTITÉ DE L'ENTREPRISE ---
   businessName: "Fée Maison",
-  professionalName: "Catherine",
+  professionalName: "Catherine Cimatti-Adam",
   tagline: "Une cuisine maison, généreuse et personnalisée, directement chez vous",
   subtitle:
     "Catherine de Fée Maison vous accompagne au quotidien avec le batchcooking à domicile et imagine les repas de vos évènements, séjours et moments de partage.",
@@ -17,7 +17,7 @@ export const siteConfig = {
   contact: {
     email: "feemaison.lannion@gmail.com",
     phone: "06 84 88 61 11",
-    address: "Lannion",
+    address: "Brélévenez, Lannion",
     city: "Lannion",
     department: "Côtes d'Armor",
     region: "Bretagne",
@@ -25,18 +25,18 @@ export const siteConfig = {
 
   // --- ZONE D'INTERVENTION ---
   interventionZone:
-    "le Trégor et les Côtes d'Armor, et selon les demandes, toute la France",
+    "le Trégor pour le batchcooking / Bretagne & Pays de la Loire et France sur devis pour les autres prestations",
   interventionZoneShort: "Trégor — Côtes d'Armor — France",
 
   // --- INFORMATIONS LÉGALES ---
   legal: {
     siret: "385 295 696 00038",
-    legalStatus: "À compléter", // ex: Entreprise individuelle, SASU, etc.
-    vatNumber: "À compléter", // Numéro de TVA intracommunautaire si applicable
-    publicationDirector: "Catherine", // Directrice de publication
+    legalStatus: "Entreprise Individuelle - ADAM EI", // ex: Entreprise individuelle, SASU, etc.
+    vatNumber: "non assujetti à la TVA", // Numéro de TVA intracommunautaire si applicable
+    publicationDirector: "Catherine Cimatti-Adam", // Directrice de publication
     // Hébergeur du site
     host: {
-      name: "À compléter",
+      name: "Hostinger",
       address: "À compléter",
       city: "À compléter",
       country: "À compléter",

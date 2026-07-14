@@ -1,116 +1,408 @@
-import { Star, Quote } from 'lucide-react';
+import {
+  ChevronLeft,
+  ChevronRight,
+  ExternalLink,
+} from 'lucide-react';
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { useSEO } from '../lib/seo';
 import { siteConfig } from '../config/siteConfig';
 
-type Testimonial = {
-  initials: string;
-  name: string;
-  type: string;
-  text: string;
-  rating: number;
-  isExample: boolean;
+type GoogleReview = {
+  image: string;
+  alt: string;
 };
 
-// IMPORTANT : Ces témoignages sont des EXEMPLES identifiés comme tels.
-// Remplacez-les par de vrais témoignages avant la mise en ligne.
-const testimonials: Testimonial[] = [
+const googleReviews: GoogleReview[] = [
   {
-    initials: 'M.D.',
-    name: 'Marie D.',
-    type: 'Batchcooking à domicile',
-    text: 'Exemple de témoignage — Catherine a transformé notre quotidien. Les repas de la semaine sont prêts, variés et délicieux. Un vrai soulagement.',
-    rating: 5,
-    isExample: true,
+    image: '/images/avis-google/avis-google-01.jpg',
+    alt: 'Avis Google publié pour Fée Maison',
   },
   {
-    initials: 'T.L.',
-    name: 'Thomas L.',
-    type: 'Évènement privé — Anniversaire',
-    text: 'Exemple de témoignage — Le buffet préparé par Catherine pour notre anniversaire a ravi tous nos invités. Cuisine généreuse et conviviale.',
-    rating: 5,
-    isExample: true,
+    image: '/images/avis-google/avis-google-02.jpg',
+    alt: 'Avis Google concernant les prestations de Fée Maison',
   },
   {
-    initials: 'S.K.',
-    name: 'Sophie K.',
-    type: 'Séjour bien-être',
-    text: 'Exemple de témoignage — Lors de notre retraite yoga, Catherine a préparé des repas équilibrés et savoureux, parfaitement adaptés au programme.',
-    rating: 5,
-    isExample: true,
+    image: '/images/avis-google/avis-google-03.jpg',
+    alt: 'Témoignage client publié sur la fiche Google de Fée Maison',
   },
   {
-    initials: 'J.P.',
-    name: 'Julien P.',
-    type: 'Batchcooking à domicile',
-    text: "Exemple de témoignage — Un gain de temps précieux et des plats faits maison de qualité. Catherine écoute et s'adapte à nos préférences.",
-    rating: 5,
-    isExample: true,
+    image: '/images/avis-google/avis-google-04.jpg',
+    alt: 'Avis client publié sur Google pour Fée Maison',
+  },
+  {
+    image: '/images/avis-google/avis-google-05.jpg',
+    alt: 'Avis Google sur les services de Fée Maison',
+  },
+  {
+    image: '/images/avis-google/avis-google-06.jpg',
+    alt: 'Retour client publié sur la fiche Google de Fée Maison',
   },
 ];
 
-function TestimonialCard({ t }: { t: Testimonial }) {
+const googleBusinessUrl =
+  'https://maps.app.goo.gl/NaApVfbf6Ldjt5b68';
+
+function GoogleReviewCard({
+  review,
+  priority = false,
+}: {
+  review: GoogleReview;
+  priority?: boolean;
+}) {
   return (
-    <div className="flex-shrink-0 w-[340px] md:w-[400px] bg-white rounded-2xl shadow-sm p-6 mx-3">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-full bg-terracotta-100 text-terracotta-600 flex items-center justify-center font-serif text-lg font-semibold">
-            {t.initials}
-          </div>
-          <div>
-            <p className="font-semibold text-brown-800 text-sm">{t.name}</p>
-            <p className="text-xs text-brown-500">{t.type}</p>
-          </div>
-        </div>
-        <Quote size={24} className="text-beige-300" />
+    <article
+      className="
+        flex-none
+        w-[65vw]
+        max-w-[300px]
+        sm:w-[300px]
+        lg:w-[320px]
+      "
+    >
+      <div
+        className="
+          h-full
+          overflow-hidden
+          rounded-2xl
+          border
+          border-beige-100
+          bg-cream-50
+          p-3
+          shadow-sm
+          transition-all
+          duration-300
+          hover:-translate-y-1
+          hover:shadow-md
+        "
+      >
+        <img
+          src={review.image}
+          alt={review.alt}
+          className="block h-auto w-full rounded-xl object-contain"
+          loading={priority ? 'eager' : 'lazy'}
+        />
       </div>
-      <div className="flex gap-0.5 mb-3">
-        {Array.from({ length: t.rating }).map((_, i) => (
-          <Star key={i} size={14} className="fill-terracotta-500 text-terracotta-500" />
-        ))}
-      </div>
-      <p className="text-sm text-brown-600 leading-relaxed">{t.text}</p>
-      {t.isExample && (
-        <p className="mt-3 text-xs italic text-beige-500">— Témoignage exemple à remplacer</p>
-      )}
-    </div>
+    </article>
   );
 }
 
 export function TestimonialCarousel() {
+  const carouselRef = useRef<HTMLDivElement | null>(null);
+
+  const [hasOverflow, setHasOverflow] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+
   useSEO({
-    title: 'Témoignages — Fée Maison | Cuisinière à domicile Lannion',
-    description: 'Découvrez les retours des clients de Fée Maison sur le batchcooking à domicile et la cuisine évènementielle.',
+    title:
+      'Avis clients – Fée Maison | Cuisinière à domicile à Lannion',
+    description:
+      'Découvrez les avis Google des clients de Fée Maison, cuisinière à domicile à Lannion.',
   });
 
-  const doubled = [...testimonials, ...testimonials];
+  /**
+   * Vérifie si le contenu dépasse réellement la largeur disponible.
+   * Le défilement et les flèches sont désactivés lorsqu’il n’y a
+   * pas suffisamment d’avis pour remplir la largeur.
+   */
+  const updateOverflowState = useCallback(() => {
+    const carousel = carouselRef.current;
+
+    if (!carousel) {
+      return;
+    }
+
+    const contentOverflows =
+      carousel.scrollWidth > carousel.clientWidth + 2;
+
+    setHasOverflow(contentOverflows);
+
+    if (!contentOverflows) {
+      carousel.scrollTo({
+        left: 0,
+        behavior: 'auto',
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    updateOverflowState();
+
+    const carousel = carouselRef.current;
+
+    if (!carousel) {
+      return;
+    }
+
+    const resizeObserver = new ResizeObserver(() => {
+      updateOverflowState();
+    });
+
+    resizeObserver.observe(carousel);
+
+    window.addEventListener('resize', updateOverflowState);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener(
+        'resize',
+        updateOverflowState
+      );
+    };
+  }, [updateOverflowState]);
+
+  /**
+   * Calcule la largeur d’une carte ainsi que l’espace entre deux cartes.
+   */
+  const getScrollAmount = useCallback(() => {
+    const carousel = carouselRef.current;
+
+    if (!carousel) {
+      return 350;
+    }
+
+    const firstCard =
+      carousel.querySelector<HTMLElement>('article');
+
+    if (!firstCard) {
+      return carousel.clientWidth * 0.8;
+    }
+
+    const carouselStyle = window.getComputedStyle(carousel);
+    const gap = Number.parseFloat(carouselStyle.columnGap) || 20;
+
+    return firstCard.offsetWidth + gap;
+  }, []);
+
+  const scrollToNext = useCallback(() => {
+    const carousel = carouselRef.current;
+
+    if (!carousel || !hasOverflow) {
+      return;
+    }
+
+    const maximumScroll =
+      carousel.scrollWidth - carousel.clientWidth;
+
+    const isNearEnd =
+      carousel.scrollLeft >= maximumScroll - 10;
+
+    if (isNearEnd) {
+      carousel.scrollTo({
+        left: 0,
+        behavior: 'smooth',
+      });
+
+      return;
+    }
+
+    carousel.scrollBy({
+      left: getScrollAmount(),
+      behavior: 'smooth',
+    });
+  }, [getScrollAmount, hasOverflow]);
+
+  const scrollToPrevious = useCallback(() => {
+    const carousel = carouselRef.current;
+
+    if (!carousel || !hasOverflow) {
+      return;
+    }
+
+    const isAtBeginning = carousel.scrollLeft <= 10;
+
+    if (isAtBeginning) {
+      carousel.scrollTo({
+        left: carousel.scrollWidth,
+        behavior: 'smooth',
+      });
+
+      return;
+    }
+
+    carousel.scrollBy({
+      left: -getScrollAmount(),
+      behavior: 'smooth',
+    });
+  }, [getScrollAmount, hasOverflow]);
+
+  /**
+   * Défilement automatique uniquement lorsque les avis dépassent
+   * la largeur visible. Il s’arrête au survol de la souris.
+   */
+  useEffect(() => {
+    if (!hasOverflow || isPaused) {
+      return;
+    }
+
+    const timer = window.setInterval(() => {
+      scrollToNext();
+    }, siteConfig.testimonialCarouselSpeed);
+
+    return () => {
+      window.clearInterval(timer);
+    };
+  }, [
+    hasOverflow,
+    isPaused,
+    scrollToNext,
+  ]);
 
   return (
-    <section className="py-20 md:py-28 bg-cream-100 overflow-hidden">
-      <div className="text-center mb-12 px-4">
-        <h2 className="section-title mb-4">Ce que disent les clients</h2>
+    <section className="overflow-hidden bg-cream-100 py-20 md:py-28">
+      <div className="mx-auto mb-12 max-w-3xl px-4 text-center">
+        <p
+          className="
+            mb-3
+            text-sm
+            font-semibold
+            uppercase
+            tracking-[0.18em]
+            text-terracotta-600
+          "
+        >
+          Avis Google
+        </p>
+
+        <h2 className="section-title mb-4">
+          Ce que disent les clients
+        </h2>
+
         <div className="divider" />
-        <p className="section-subtitle max-w-2xl mx-auto">
-          Les témoignages ci-dessous sont des exemples en attente de retours clients réels.
+
+        <p className="section-subtitle mx-auto mt-5 max-w-2xl">
+          Découvrez quelques avis authentiques publiés par les
+          clients de Fée Maison sur Google.
         </p>
       </div>
 
-      <div className="relative">
-        <div className="carousel-track flex w-max">
-          {doubled.map((t, i) => (
-            <TestimonialCard key={i} t={t} />
+      <div
+        className="relative mx-auto max-w-[1500px]"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        {hasOverflow && (
+          <>
+            <button
+              type="button"
+              onClick={scrollToPrevious}
+              className="
+                absolute
+                left-2
+                top-1/2
+                z-20
+                flex
+                -translate-y-1/2
+                items-center
+                justify-center
+                rounded-full
+                border
+                border-beige-200
+                bg-white/95
+                p-3
+                text-terracotta-700
+                shadow-md
+                transition
+                hover:bg-terracotta-50
+                md:flex
+              "
+              aria-label="Afficher les avis précédents"
+            >
+              <ChevronLeft size={24} aria-hidden="true" />
+            </button>
+
+            <button
+              type="button"
+              onClick={scrollToNext}
+              className="
+                absolute
+                right-2
+                top-1/2
+                z-20
+                flex
+                -translate-y-1/2
+                items-center
+                justify-center
+                rounded-full
+                border
+                border-beige-200
+                bg-white/95
+                p-3
+                text-terracotta-700
+                shadow-md
+                transition
+                hover:bg-terracotta-50
+                md:flex
+              "
+              aria-label="Afficher les avis suivants"
+            >
+              <ChevronRight size={24} aria-hidden="true" />
+            </button>
+          </>
+        )}
+
+        <div
+          ref={carouselRef}
+          className="
+            flex
+            gap-8
+            overflow-x-auto
+            scroll-smooth
+            px-4
+            pb-5
+            md:px-16
+          "
+          style={{
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+          }}
+        >
+          {googleReviews.map((review, index) => (
+            <GoogleReviewCard
+              key={review.image}
+              review={review}
+              priority={index === 0}
+            />
           ))}
         </div>
       </div>
 
-      <div className="text-center mt-10 px-4">
-        <p className="text-sm text-brown-500">
-          Les avis réels laissés sur la page Google de Fée Maison pourront être affichés ici sous
-          forme de captures d'écran, en défilement automatique.
-        </p>
-        <p className="text-xs text-beige-500 mt-1">
-          Vitesse du carrousel : {siteConfig.testimonialCarouselSpeed / 1000}s (configurable dans
-          siteConfig.ts)
-        </p>
+      <div className="mt-10 px-4 text-center">
+        <a
+          href={googleBusinessUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="
+            inline-flex
+            items-center
+            justify-center
+            gap-2
+            rounded-full
+            bg-terracotta-600
+            px-7
+            py-3.5
+            font-semibold
+            text-white
+            shadow-sm
+            transition-all
+            duration-300
+            hover:-translate-y-0.5
+            hover:bg-terracotta-700
+            hover:shadow-md
+            focus:outline-none
+            focus:ring-2
+            focus:ring-terracotta-500
+            focus:ring-offset-2
+          "
+          aria-label="Voir tous les avis de Fée Maison sur Google"
+        >
+          Voir tous les avis sur Google
+          <ExternalLink size={18} aria-hidden="true" />
+        </a>
       </div>
     </section>
   );

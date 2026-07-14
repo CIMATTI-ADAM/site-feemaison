@@ -77,7 +77,7 @@ export const eventImages: Photo[] = [
   },
   {
     src: '/images/photosCC/Event-mignardises_01.jpeg',
-    alt: 'Mignardises maison pour un évènement, douceurs sucrées préparées avec soin',
+    alt: 'Mignardises maison pour un évènement',
     category: 'buffet',
   },
   {

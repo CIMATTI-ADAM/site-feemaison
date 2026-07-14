@@ -1,0 +1,119 @@
+/**
+ * ============================================================
+ * THÈME GRAPHIQUE — FÉE MAISON
+ * ============================================================
+ *
+ * Toutes les couleurs du site doivent provenir de ce fichier.
+ *
+ * Pour modifier l'identité visuelle :
+ * 1. changer les valeurs ci-dessous ;
+ * 2. enregistrer avec Ctrl + S ;
+ * 3. vérifier avec npm run dev ;
+ * 4. reconstruire avec npm run build.
+ * ============================================================
+ */
+
+:root {
+  /* ==========================================================
+     COULEUR PRINCIPALE — BORDEAUX
+     ========================================================== */
+
+  --color-primary-50: #f5e9e8;
+  --color-primary-100: #ead1d0;
+  --color-primary-200: #d9a3a2;
+  --color-primary-300: #c27979;
+  --color-primary-400: #ac5a5b;
+  --color-primary-500: #934041;
+  --color-primary-600: #7f1f20;
+  --color-primary-700: #651718;
+  --color-primary-800: #571416;
+  --color-primary-900: #471011;
+
+  /* ==========================================================
+     COULEUR D'ACCENT — BLEU CANARD
+     ========================================================== */
+
+  --color-accent-50: #e8f3f3;
+  --color-accent-100: #d5e8e9;
+  --color-accent-200: #b8d7d9;
+  --color-accent-300: #8fbec2;
+  --color-accent-400: #72a9ae;
+  --color-accent-500: #438d94;
+  --color-accent-600: #18727d;
+  --color-accent-700: #125b64;
+  --color-accent-800: #0e4d55;
+  --color-accent-900: #0b4148;
+
+  /* ==========================================================
+     CRÈME ET BLANC CASSÉ
+     ========================================================== */
+
+  --color-cream-50: #fffdfc;
+  --color-cream-100: #fcf7f3;
+  --color-cream-200: #faefe7;
+  --color-cream-300: #f7e4d6;
+  --color-cream-400: #efd8c8;
+  --color-cream-500: #e8cdbb;
+  --color-cream-600: #cdaa92;
+
+  /* ==========================================================
+     TEXTES ET COULEURS NEUTRES
+     ========================================================== */
+
+  --color-text: #302827;
+  --color-text-secondary: #6b5c58;
+  --color-text-muted: #8b7a74;
+
+  --color-white: #ffffff;
+  --color-black: #181413;
+
+  /* ==========================================================
+     ÉTATS
+     ========================================================== */
+
+  --color-success: #35705a;
+  --color-error: #a83434;
+  --color-warning: #a66b27;
+
+  /* ==========================================================
+     ÉLÉMENTS SÉMANTIQUES
+     ========================================================== */
+
+  --color-page-background: var(--color-cream-100);
+  --color-section-background: var(--color-cream-200);
+  --color-card-background: var(--color-white);
+
+  --color-heading: var(--color-primary-600);
+  --color-body-text: var(--color-text);
+
+  --color-link: var(--color-accent-600);
+  --color-link-hover: var(--color-accent-700);
+
+  --color-button-primary: var(--color-primary-600);
+  --color-button-primary-hover: var(--color-primary-700);
+
+  --color-button-secondary: var(--color-accent-600);
+  --color-button-secondary-hover: var(--color-accent-700);
+
+  --color-border: var(--color-cream-500);
+  --color-focus: var(--color-accent-600);
+
+  /* ==========================================================
+     OMBRES
+     ========================================================== */
+
+  --shadow-soft:
+    0 8px 24px rgba(48, 40, 39, 0.08);
+
+  --shadow-card:
+    0 14px 38px rgba(48, 40, 39, 0.11);
+
+  /* ==========================================================
+     ARRONDIS
+     ========================================================== */
+
+  --radius-small: 0.5rem;
+  --radius-medium: 1rem;
+  --radius-large: 1.5rem;
+  --radius-pill: 9999px;
+}
