@@ -1,4 +1,4 @@
-import { ArrowRight, Clock, Heart, Leaf, Users, Sparkles } from 'lucide-react';
+import { ArrowRight, Clock, Heart, Leaf, Users, Sparkles, CookingPot, ChefHat } from 'lucide-react';
 import { Link } from '../lib/router';
 import { useSEO } from '../lib/seo';
 import { siteConfig } from '../config/siteConfig';
@@ -62,16 +62,16 @@ export function HomePage() {
               <Sparkles size={16} /> À votre service
             </span>
           </div>
-          <h2 className="section-title mb-6">Derrière Fée Maison, il y a Catherine</h2>
+          <h2 className="section-title mb-6">Derrière Fée Maison, il y a Catherine...</h2>
           <div className="divider" />
           <p className="text-lg text-brown-600 leading-relaxed max-w-3xl mx-auto">
-            Derrière Fée Maison, Catherine imagine et prépare une cuisine familiale, gourmande et
+            Catherine imagine et prépare une cuisine familiale, gourmande et
             adaptée à chaque besoin. Menus du quotidien, anniversaires, séjours bien-être ou
             séminaires : chaque prestation est pensée sur mesure.
           </p>
           <div className="mt-8">
             <Link to="a-propos" className="inline-flex items-center gap-2 text-terracotta-600 font-semibold hover:text-terracotta-700 transition-colors">
-              En savoir plus sur Catherine <ArrowRight size={16} />
+              En savoir plus <ArrowRight size={16} />
             </Link>
           </div>
         </div>
@@ -101,11 +101,9 @@ export function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brown-900/60 to-transparent" />
                 <div className="absolute bottom-4 left-4 flex items-center gap-2 text-cream-50">
-                  <img
-                    src="/images/logo/fee-maison-cuisiniere-filigrane.png"
-                    alt="Fée Maison"
-                    aria-hidden="true"
-                    className="h-40 w-40 object-contain opacity-100 border-4 border-red-500"
+                  <CookingPot
+                    size={36}
+                    className="text-white/90"
                     />
                   
                   <span className="font-serif text-lg">Batchcooking à domicile</span>
@@ -131,6 +129,7 @@ export function HomePage() {
                   loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
+
                 <div className="absolute inset-0 bg-gradient-to-t from-brown-900/60 to-transparent" />
                 <div className="absolute bottom-4 left-4 flex items-center gap-2 text-cream-50">
                   <Users size={20} />

@@ -25,7 +25,7 @@ export const siteConfig = {
 
   // --- ZONE D'INTERVENTION ---
   interventionZone:
-    "le Trégor pour le batchcooking / Bretagne & Pays de la Loire et France sur devis pour les autres prestations",
+    "Batchcooking : Lannion et tout le Trégor / Evènements et séjours : en Bretagne, Pays de la Loire, voire toute la France sur devis",
   interventionZoneShort: "Trégor — Côtes d'Armor — France",
 
   // --- INFORMATIONS LÉGALES ---

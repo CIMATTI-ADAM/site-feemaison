@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>Carte Batch Cooking - Fée Maison</title>
+
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <div class="print-toolbar">
+      <button
+        type="button"
+        class="print-button"
+        onclick="window.print()"
+      >
+        Imprimer ou enregistrer en PDF
+      </button>
+    </div>
+
+    <main class="menu-shell">
+      <section id="menu-page" class="menu-page"></section>
+    </main>
+
+    <script src="./menuConfig.js"></script>
+
+    <script>
+      const config = window.menuConfig;
+
+      function escapeHtml(value) {
+        return String(value ?? "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function applyTheme() {
+        const root = document.documentElement;
+        const colors = config.colors || {};
+        const watermark = config.watermark || {};
+
+        const variables = {
+          "--burgundy": colors.burgundy,
+          "--burgundy-dark": colors.burgundyDark,
+          "--burgundy-soft": colors.burgundySoft,
+          "--cream": colors.cream,
+          "--cream-light": colors.creamLight,
+          "--cream-soft": colors.creamSoft,
+          "--duck-blue": colors.duckBlue,
+          "--duck-blue-light": colors.duckBlueLight,
+          "--gold": colors.gold,
+          "--gold-light": colors.goldLight,
+          "--green": colors.green,
+          "--green-light": colors.greenLight,
+          "--text": colors.text,
+          "--text-soft": colors.textSoft,
+          "--white": colors.white,
+          "--watermark-opacity": watermark.opacity,
+          "--watermark-width": watermark.width,
+          "--watermark-position-x": watermark.positionX,
+          "--watermark-position-y": watermark.positionY,
+        };
+
+        Object.entries(variables).forEach(([name, value]) => {
+          if (value !== undefined && value !== null && value !== "") {
+            root.style.setProperty(name, String(value));
+          }
+        });
+      }
+
+      function tagInfo(tagKey) {
+        return config.tagLabels?.[tagKey] || {
+          label: tagKey,
+          symbol: "•",
+          cssClass: "",
+        };
+      }
+
+      function createInlineTags(tags = []) {
+        if (!tags.length) return "";
+
+        return `
+          <span class="inline-tags">
+            ${tags
+              .map((tagKey) => {
+                const tag = tagInfo(tagKey);
+
+                return `
+                  <span
+                    class="inline-tag ${escapeHtml(tag.cssClass)}"
+                    title="${escapeHtml(tag.label)}"
+                    aria-label="${escapeHtml(tag.label)}"
+                  >
+                    ${escapeHtml(tag.symbol)}
+                  </span>
+                `;
+              })
+              .join("")}
+          </span>
+        `;
+      }
+
+      function createRecipeItem(recipe) {
+        return `
+          <li class="recipe-item">
+            <span class="recipe-name">
+              ${escapeHtml(recipe.name)}
+            </span>
+            ${createInlineTags(recipe.tags || [])}
+          </li>
+        `;
+      }
+
+      function createCategory(category) {
+        const showIcon = config.display?.showCategoryIcons !== false;
+
+        return `
+          <section
+            class="category"
+            data-id="${escapeHtml(category.id)}"
+          >
+            <header class="category-header">
+              ${
+                showIcon
+                  ? `
+                    <span
+                      class="category-icon"
+                      aria-hidden="true"
+                    >
+                      ${escapeHtml(category.icon || "•")}
+                    </span>
+                  `
+                  : `<span></span>`
+              }
+
+              <div class="category-title-wrap">
+                <h2 class="category-title">
+                  ${escapeHtml(category.title)}
+                </h2>
+                <div class="category-rule"></div>
+              </div>
+            </header>
+
+            <ul class="recipe-list">
+              ${(category.recipes || [])
+                .map(createRecipeItem)
+                .join("")}
+            </ul>
+          </section>
+        `;
+      }
+
+      function createLegend() {
+        const enabled =
+          config.legend?.enabled !== false &&
+          config.display?.showLegend !== false;
+
+        if (!enabled) return "";
+
+        const items = config.legend?.items || [];
+
+        return `
+          <aside class="legend-card" aria-label="Légende">
+            <div class="legend-grid">
+              ${items
+                .map((tagKey) => {
+                  const tag = tagInfo(tagKey);
+
+                  return `
+                    <div class="legend-item">
+                      <span
+                        class="legend-symbol ${escapeHtml(tag.cssClass)}"
+                        aria-hidden="true"
+                      >
+                        ${escapeHtml(tag.symbol)}
+                      </span>
+
+                      <span class="legend-label">
+                        ${escapeHtml(tag.label)}
+                      </span>
+                    </div>
+                  `;
+                })
+                .join("")}
+            </div>
+          </aside>
+        `;
+      }
+
+      function createContactList() {
+        const business = config.business || {};
+        const showIcons = config.display?.showContactIcons !== false;
+
+        const items = [
+          {
+            icon: "☎",
+            value: business.phone,
+          },
+               {
+            icon: "✉",
+            value: business.email,
+          },
+          {
+            icon: "⌂",
+            value: business.website,
+          },
+        ].filter((item) => item.value);
+
+        return `
+          <ul class="contact-list">
+            ${items
+              .map(
+                (item) => `
+                  <li class="contact-item">
+                    ${
+                      showIcons
+                        ? `
+                          <span
+                            class="contact-icon"
+                            aria-hidden="true"
+                          >
+                            ${escapeHtml(item.icon)}
+                          </span>
+                        `
+                        : `<span></span>`
+                    }
+
+                    <span>
+                      ${escapeHtml(item.value)}
+                    </span>
+                  </li>
+                `
+              )
+              .join("")}
+          </ul>
+        `;
+      }
+
+      function createFooterLogo() {
+        const showLogo =
+          config.display?.showLogoInFooter !== false &&
+          config.business?.logoUrl;
+
+        if (!showLogo) return "";
+
+        return `
+          <img
+            class="footer-logo"
+            src="${escapeHtml(config.business.logoUrl)}"
+            alt=""
+            aria-hidden="true"
+          />
+        `;
+      }
+
+      function createWatermark() {
+        const enabled =
+          config.watermark?.enabled !== false &&
+          config.display?.showWatermark !== false &&
+          config.business?.watermarkUrl;
+
+        if (!enabled) return "";
+
+        return `
+          <img
+            class="watermark"
+            src="${escapeHtml(config.business.watermarkUrl)}"
+            alt=""
+            aria-hidden="true"
+          />
+        `;
+      }
+
+      function renderMenu() {
+        applyTheme();
+
+        const business = config.business || {};
+        const booklet = config.booklet || {};
+        const categories = config.categories || [];
+
+        document.title =
+          `${booklet.menuTitle || "Carte Batch Cooking"} - ` +
+          `${business.name || "Fée Maison"}`;
+
+        document.getElementById("menu-page").innerHTML = `
+          <div class="page-decor"></div>
+          ${createWatermark()}
+
+          <div class="page-content">
+            <header class="menu-header">
+              <div class="top-label-row">
+                <span class="top-label-line"></span>
+
+                <p class="top-label">
+                  ${escapeHtml(booklet.topLabel)}
+                </p>
+
+                <span class="top-label-line"></span>
+              </div>
+
+              <h1 class="brand-title">
+                ${escapeHtml(booklet.title)}
+              </h1>
+
+              <p class="brand-slogan">
+                ${escapeHtml(booklet.slogan)}
+              </p>
+
+              <div class="menu-heading-row">
+                <span class="menu-heading-line"></span>
+
+                <h2 class="menu-title">
+                  ${escapeHtml(booklet.menuTitle)}
+                </h2>
+
+                <span class="menu-season-separator">
+                  •
+                </span>
+
+                <p class="menu-season">
+                  ${escapeHtml(booklet.season)}
+                </p>
+
+                <span class="menu-heading-line"></span>
+              </div>
+
+              <p class="menu-introduction">
+                ${escapeHtml(booklet.introduction)}
+              </p>
+            </header>
+
+            <div class="menu-main">
+              <div class="categories-grid">
+                ${categories
+                  .map(createCategory)
+                  .join("")}
+
+                ${createLegend()}
+              </div>
+            </div>
+
+            <footer class="menu-footer">
+              <div class="footer-divider">
+                <span class="footer-divider-line"></span>
+                <span
+                  class="footer-divider-mark"
+                  aria-hidden="true"
+                >
+                  ✦
+                </span>
+                <span class="footer-divider-line"></span>
+              </div>
+
+              <div class="footer-main">
+                <div class="personalization-note">
+                  <span
+                    class="personalization-heart"
+                    aria-hidden="true"
+                  >
+                    ♥
+                  </span>
+
+                  ${escapeHtml(booklet.personalizationText)}
+                </div>
+
+                <div class="footer-brand">
+                  ${createFooterLogo()}
+
+                  <p class="footer-brand-name">
+                    ${escapeHtml(business.name)}
+                  </p>
+
+                  <p class="footer-brand-activity">
+                    ${escapeHtml(business.activity)}
+                  </p>
+                </div>
+
+                ${createContactList()}
+              </div>
+
+              <div class="seasonal-banner">
+                ${escapeHtml(booklet.seasonalNote)}
+              </div>
+            </footer>
+          </div>
+        `;
+      }
+
+      if (!config) {
+        document.getElementById("menu-page").innerHTML = `
+          <div style="padding:40px;font-family:Arial,sans-serif">
+            <h1>Erreur de configuration</h1>
+            <p>
+              Le fichier menuConfig.js n’a pas été chargé.
+            </p>
+          </div>
+        `;
+      } else {
+        renderMenu();
+      }
+    </script>
+  </body>
+</html>

@@ -49,9 +49,7 @@ export function Header() {
             <span className="flex items-center justify-center w-10 h-10 rounded-full bg-terracotta-600 text-white transition-transform group-hover:scale-105">
               <UtensilsCrossed size={20} />
             </span>
-            <span className="font-serif text-xl md:text-2xl text-brown-800 font-semibold">
-              {siteConfig.businessName}
-            </span>
+           
           </Link>
 
           {/* Desktop nav */}
