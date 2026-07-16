@@ -81,7 +81,7 @@ window.menuConfig = {
 
     menuTitle: "Carte des plats",
 
-    season: "Été",
+    season: "Été 2026",
 
     introduction:
       "Des repas faits maison, préparés chez vous avec des produits bruts, locaux et de saison, adaptés à vos envies et à vos habitudes alimentaires",
@@ -142,7 +142,7 @@ window.menuConfig = {
    */
   watermark: {
     enabled: true,
-    opacity: 0.08,
+    opacity: 0.248,
     width: "175mm",
     positionX: "center",
     positionY: "54%",
@@ -227,6 +227,16 @@ window.menuConfig = {
         },
 
         {
+          name: "Courgettes farcies au quinoa, citron et fromage de chèvre",
+          tags: ["bestseller", "veggie"],
+        },
+
+        {
+          name: "Parmiggiana d'aubergines",
+          tags: ["bestseller", "veggie"],
+        },
+
+        {
           name: "Dahl de lentilles corail au lait de coco",
           tags: ["bestseller", "veggie", "spicy"],
         },
@@ -249,6 +259,12 @@ window.menuConfig = {
       column: "right",
 
       recipes: [
+        {
+          name:
+            "Poulet façon grand-mère (avec légumes et pommes de terre)",
+          tags: [],
+        },
+
         {
           name:
             "Poisson blanc vapeur, selon arrivage, et tagliatelles de courgettes",
@@ -304,6 +320,12 @@ window.menuConfig = {
             "Quiche au fenouil et fromage fondant",
           tags: ["veggie"],
         },
+
+         {
+          name:
+            "Quiche aux champignons, lardons et fromage moelleux",
+          tags: [],
+        },
       ],
     },
 
@@ -336,8 +358,14 @@ window.menuConfig = {
 
         {
           name:
-            "Courgettes farcies au quinoa, fromage de chèvre et citron",
-          tags: ["veggie"],
+            "Roulés de poireaux au jambon et béchamel",
+          tags: [],
+        },
+
+        {
+          name:
+            "Oeufs durs aux épinards et béchamel",
+          tags: [],
         },
       ],
     },

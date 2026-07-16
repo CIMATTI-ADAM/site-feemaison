@@ -14,13 +14,21 @@
 
   <body>
     <div class="print-toolbar">
-      <button
-        type="button"
-        class="print-button"
-        onclick="window.print()"
-      >
-        Imprimer ou enregistrer en PDF
-      </button>
+        <button
+            type="button"
+         class="print-button"
+            onclick="printMenu(true)"
+        >
+          Imprimer avec fond crème
+        </button>
+
+        <button
+         type="button"
+            class="print-button print-button-light"
+            onclick="printMenu(false)"
+        >
+          Imprimer sans fond
+        </button>
     </div>
 
     <main class="menu-shell">
@@ -31,6 +39,36 @@
 
     <script>
       const config = window.menuConfig;
+
+      function printMenu(withBackground) {
+  const body = document.body;
+
+  /*
+   * On applique une classe spéciale uniquement pour
+   * l’impression sans fond.
+   */
+  if (withBackground) {
+    body.classList.remove("print-without-background");
+  } else {
+    body.classList.add("print-without-background");
+  }
+
+  /*
+   * Petit délai pour laisser Chrome appliquer le style
+   * avant d’ouvrir la fenêtre d’impression.
+   */
+  window.setTimeout(() => {
+    window.print();
+  }, 100);
+}
+
+/*
+ * Une fois l’impression terminée ou annulée,
+ * on rétablit automatiquement l’affichage normal.
+ */
+window.addEventListener("afterprint", () => {
+  document.body.classList.remove("print-without-background");
+});
 
       function escapeHtml(value) {
         return String(value ?? "")

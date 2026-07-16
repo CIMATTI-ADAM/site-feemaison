@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>Déroulement d’une prestation - Fée Maison</title>
+
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <div class="print-toolbar">
+      <button
+        type="button"
+        class="print-button"
+        onclick="printDocument(true)"
+      >
+        Imprimer avec fond crème
+      </button>
+
+      <button
+        type="button"
+        class="print-button print-button-light"
+        onclick="printDocument(false)"
+      >
+        Imprimer sans fond
+      </button>
+    </div>
+
+    <main class="document-shell">
+      <section
+        id="document-page"
+        class="document-page"
+      ></section>
+    </main>
+
+    <script src="./deroulementConfig.js"></script>
+
+    <script>
+      const config = window.deroulementConfig;
+
+      /**
+       * Ouvre la boîte de dialogue d’impression.
+       *
+       * withBackground = true :
+       * conserve le fond crème.
+       *
+       * withBackground = false :
+       * supprime les grands aplats de fond mais conserve
+       * le filigrane, les textes, les icônes et les couleurs.
+       */
+      function printDocument(withBackground) {
+        if (withBackground) {
+          document.body.classList.remove(
+            "print-without-background"
+          );
+        } else {
+          document.body.classList.add(
+            "print-without-background"
+          );
+        }
+
+        window.setTimeout(() => {
+          window.print();
+        }, 100);
+      }
+
+      window.addEventListener("afterprint", () => {
+        document.body.classList.remove(
+          "print-without-background"
+        );
+      });
+
+      /**
+       * Protège les textes insérés dans la page HTML.
+       */
+      function escapeHtml(value) {
+        return String(value ?? "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      /**
+       * Applique les couleurs et les paramètres du filigrane
+       * provenant de deroulementConfig.js.
+       */
+      function applyTheme() {
+        const root = document.documentElement;
+        const colors = config.colors || {};
+        const watermark = config.watermark || {};
+
+        const variables = {
+          "--burgundy": colors.burgundy,
+          "--burgundy-dark": colors.burgundyDark,
+          "--burgundy-soft": colors.burgundySoft,
+
+          "--cream": colors.cream,
+          "--cream-light": colors.creamLight,
+          "--cream-soft": colors.creamSoft,
+
+          "--duck-blue": colors.duckBlue,
+          "--duck-blue-light": colors.duckBlueLight,
+
+          "--gold": colors.gold,
+          "--gold-light": colors.goldLight,
+
+          "--text": colors.text,
+          "--text-soft": colors.textSoft,
+
+          "--white": colors.white,
+
+          "--watermark-opacity": watermark.opacity,
+          "--watermark-width": watermark.width,
+          "--watermark-position-x": watermark.positionX,
+          "--watermark-position-y": watermark.positionY,
+        };
+
+        Object.entries(variables).forEach(
+          ([name, value]) => {
+            if (
+              value !== undefined &&
+              value !== null &&
+              value !== ""
+            ) {
+              root.style.setProperty(
+                name,
+                String(value)
+              );
+            }
+          }
+        );
+      }
+
+      /**
+       * Pictogrammes vectoriels.
+       *
+       * Ils sont dessinés directement en SVG afin de rester
+       * fins, homogènes et nets lors de l’impression PDF.
+       */
+      function getIconSvg(iconName) {
+        const icons = {
+        handshake: `
+            <svg
+                viewBox="0 0 64 64"
+                aria-hidden="true"
+                focusable="false"
+            >
+                <path d="M14 14
+                    h28
+                    a8 8 0 0 1 8 8
+                    v12
+                    a8 8 0 0 1-8 8
+                    H26
+                    l-8 8
+                    v-8
+                    h-4
+                    a8 8 0 0 1-8-8
+                    V22
+                    a8 8 0 0 1 8-8z"/>
+
+            <circle cx="22" cy="30" r="1"/>
+            <circle cx="32" cy="30" r="1"/>
+            <circle cx="42" cy="30" r="1"/>
+            </svg>
+            `,
+
+          target: `
+            <svg
+            viewBox="0 0 64 64"
+            aria-hidden="true"
+            focusable="false"
+            >
+            <!-- Carte de menu -->
+            <rect x="12" y="9" width="34" height="46" rx="4" />
+            <path d="M20 19h18" />
+            <path d="M20 27h12" />
+            <path d="M20 35h10" />
+
+            <!-- Coche -->
+            <circle cx="45" cy="42" r="11" />
+            <path d="M39 42l4 4 8-9" />
+            </svg>
+`           ,
+
+          "shopping-cart": `
+            <svg
+              viewBox="0 0 64 64"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path d="M7 11h8l5 30h29l7-22H19" />
+              <path d="M23 26h29" />
+              <path d="M27 19v22" />
+              <path d="M39 19v22" />
+              <circle cx="25" cy="51" r="3" />
+              <circle cx="47" cy="51" r="3" />
+            </svg>
+          `,
+
+          home: `
+            <svg
+              viewBox="0 0 64 64"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path d="M8 29L32 9l24 20" />
+              <path d="M14 27v29h36V27" />
+              <path d="M25 56V38h14v18" />
+              <path d="M20 22v-9h8" />
+            </svg>
+          `,
+
+          "serving-dish": `
+            <svg
+              viewBox="0 0 64 64"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path d="M9 43h46" />
+              <path d="M14 43c1-15 9-23 18-23s17 8 18 23" />
+              <path d="M32 14v6" />
+              <circle cx="32" cy="11" r="3" />
+              <path d="M9 49h46" />
+            </svg>
+          `,
+        };
+
+        return (
+          icons[iconName] ||
+          icons["serving-dish"]
+        );
+      }
+
+      /**
+       * Génère le grand filigrane central.
+       */
+      function createWatermark() {
+        const enabled =
+          config.watermark?.enabled !== false &&
+          config.display?.showWatermark !== false &&
+          config.business?.watermarkUrl;
+
+        if (!enabled) {
+          return "";
+        }
+
+        return `
+          <img
+            class="watermark"
+            src="${escapeHtml(
+              config.business.watermarkUrl
+            )}"
+            alt=""
+            aria-hidden="true"
+          />
+        `;
+      }
+
+      /**
+       * Génère une étape du déroulement.
+       */
+      function createStep(step, index) {
+        const showNumber =
+          config.display?.showStepNumbers !== false;
+
+        const showShortLabel =
+          config.display?.showShortLabels !== false &&
+          step.shortLabel;
+
+        return `
+          <article
+            class="step-card"
+            data-step="${escapeHtml(step.id)}"
+          >
+            <div class="step-top">
+            ${
+                showNumber
+                ? `
+                <span class="step-number">
+                ${escapeHtml(
+                    step.number ||
+                    String(index + 1).padStart(2, "0")
+                )}
+            </span>
+                `
+                : ""
+            }
+
+            <span class="step-icon">
+                ${getIconSvg(step.icon)}
+            </span>
+            </div>
+
+            <div class="step-content">
+              ${
+                showShortLabel
+                  ? `
+                    <p class="step-label">
+                      ${escapeHtml(step.shortLabel)}
+                    </p>
+                  `
+                  : ""
+              }
+
+              <h2 class="step-title">
+                ${escapeHtml(step.title)}
+              </h2>
+
+              <div class="step-rule"></div>
+
+              <p class="step-text">
+                ${escapeHtml(step.text)}
+              </p>
+            </div>
+          </article>
+        `;
+      }
+            /**
+       * Génère tout le document.
+       */
+      function render() {
+        applyTheme();
+
+        const page = document.getElementById("document-page");
+
+        page.innerHTML = `
+          ${createWatermark()}
+
+          <header class="page-header">
+
+            <p class="top-label">
+              ${escapeHtml(config.document.topLabel)}
+            </p>
+
+            <h1 class="page-title">
+              ${escapeHtml(config.document.title)}
+            </h1>
+
+            <div class="title-divider"></div>
+
+            <p class="page-subtitle">
+              ${escapeHtml(config.document.subtitle)}
+            </p>
+
+            ${
+              config.display?.showIntroduction !== false
+                ? `
+                  <p class="page-introduction">
+                    ${escapeHtml(config.document.introduction)}
+                  </p>
+                `
+                : ""
+            }
+
+          </header>
+
+          <section class="steps-grid">
+
+            ${config.steps
+              .map((step, index) => createStep(step, index))
+              .join("")}
+
+          </section>
+
+          <footer class="menu-footer">
+
+  <div class="footer-divider">
+    <span class="footer-divider-line"></span>
+
+    <span
+      class="footer-divider-mark"
+      aria-hidden="true"
+    >
+      ✦
+    </span>
+
+    <span class="footer-divider-line"></span>
+  </div>
+
+  <div class="footer-main">
+
+    ${
+      config.display?.showPersonalizationBlock !== false
+        ? `
+          <aside class="personalization-note">
+            <span
+              class="personalization-heart"
+              aria-hidden="true"
+            >
+              ♥
+            </span>
+
+            ${escapeHtml(
+              config.document.personalizationText
+            )}
+          </aside>
+        `
+        : ""
+    }
+
+    <div class="footer-brand">
+
+      ${
+        config.display?.showLogoInFooter !== false
+          ? `
+            <img
+              class="footer-logo"
+              src="${escapeHtml(
+                config.business.logoUrl
+              )}"
+              alt=""
+              aria-hidden="true"
+            />
+          `
+          : ""
+      }
+
+      <p class="footer-brand-name">
+        ${escapeHtml(config.business.name)}
+      </p>
+
+      <p class="footer-brand-activity">
+        ${escapeHtml(config.business.activity)}
+      </p>
+
+    </div>
+
+    <ul class="contact-list">
+
+      <li class="contact-item">
+        <span
+          class="contact-icon"
+          aria-hidden="true"
+        >
+          ☎
+        </span>
+
+        <span>
+          ${escapeHtml(config.business.phone)}
+        </span>
+      </li>
+
+      <li class="contact-item">
+        <span
+          class="contact-icon"
+          aria-hidden="true"
+        >
+          ✉
+        </span>
+
+        <span>
+          ${escapeHtml(config.business.email)}
+        </span>
+      </li>
+
+      <li class="contact-item">
+        <span
+          class="contact-icon"
+          aria-hidden="true"
+        >
+          ⌂
+        </span>
+
+        <span>
+          ${escapeHtml(config.business.website)}
+        </span>
+      </li>
+
+    </ul>
+
+  </div>
+
+</footer>
+
+          <div class="footer-bottom">
+
+            ${escapeHtml(config.document.footerNote)}
+
+          </div>
+        `;
+      }
+
+      render();
+
+    </script>
+
+  </body>
+</html>

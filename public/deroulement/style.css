@@ -1,0 +1,569 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@400;500;600;700&display=swap");
+
+:root {
+    --card-opacity: 0.55;
+    --card-border-opacity: 0.08;
+    --card-radius: 5mm;
+    --card-shadow: 0 5px 16px rgba(62, 46, 42, 0.055);
+  --burgundy: #7f1f20;
+  --burgundy-dark: #651718;
+  --burgundy-soft: #a84b4c;
+  --cream: #f7e4d6;
+  --cream-light: #fff9f4;
+  --cream-soft: #fbefe6;
+  --duck-blue: #18727d;
+  --duck-blue-light: #e8f3f3;
+  --gold: #c99d5d;
+  --gold-light: #e8cfab;
+  --text: #3e2e2a;
+  --text-soft: #725f58;
+  --white: #ffffff;
+  --watermark-opacity: 0.055;
+  --watermark-width: 145mm;
+  --watermark-position-x: 50%;
+  --watermark-position-y: 56%;
+
+
+/* ==========================================================
+   PARAMÈTRES GLOBAUX DE LA CHARTE
+   ========================================================== */
+
+--card-opacity: 0.55;
+--card-border-opacity: 0.08;
+--card-radius: 5mm;
+--card-shadow:
+    0 5px 16px rgba(62,46,42,.055);
+--divider-opacity: .55;
+--footer-logo-scale: 1.5;
+--footer-logo-offset: 2.2mm;
+
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: #e7e4e1;
+}
+
+body {
+  margin: 0;
+  padding: 24px 0 64px;
+  color: var(--text);
+  background: #e7e4e1;
+  font-family: "Montserrat", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+.print-toolbar {
+  position: sticky;
+  top: 12px;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  pointer-events: none;
+}
+
+.print-button {
+  pointer-events: auto;
+  min-height: 44px;
+  padding: 11px 22px;
+  border: 1px solid var(--burgundy);
+  border-radius: 999px;
+  color: var(--white);
+  background: var(--burgundy);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(62, 46, 42, 0.18);
+  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.print-button:hover {
+  background: var(--burgundy-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 30px rgba(62, 46, 42, 0.22);
+}
+
+.print-button-light {
+  color: var(--burgundy);
+  background: var(--white);
+}
+
+.print-button-light:hover {
+  color: var(--white);
+  background: var(--burgundy);
+}
+
+.print-button:focus-visible {
+  outline: 3px solid var(--duck-blue);
+  outline-offset: 3px;
+}
+
+.document-shell {
+  display: flex;
+  justify-content: center;
+  padding: 0 12px;
+}
+
+.document-page {
+  position: relative;
+  width: 210mm;
+  height: 297mm;
+  overflow: hidden;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 88% 12%, rgba(127, 31, 32, 0.035), transparent 28%),
+    linear-gradient(180deg, var(--cream-light) 0%, #fffaf6 58%, #fff8f2 100%);
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.14);
+  padding: 11mm 11mm 0;
+}
+
+.watermark {
+  position: absolute;
+  z-index: 0;
+  left: var(--watermark-position-x);
+  top: var(--watermark-position-y);
+  width: var(--watermark-width);
+  max-width: none;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+  opacity: var(--watermark-opacity);
+  pointer-events: none;
+  user-select: none;
+  filter: sepia(1) saturate(0.55) hue-rotate(330deg);
+}
+
+.page-header {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.top-label {
+  margin: 0 0 3mm;
+  color: var(--burgundy);
+  font-size: 8.2pt;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.page-title {
+  margin: 0;
+  color: var(--burgundy);
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 25pt;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.title-divider {
+  width: 42mm;
+  height: 1.2mm;
+  margin: 4mm auto 3.5mm;
+  border-radius: 999px;
+  background: var(--gold);
+}
+
+.page-subtitle {
+  max-width: 155mm;
+  margin: 0 auto;
+  color: var(--duck-blue);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 15.5pt;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.25;
+}
+
+.page-introduction {
+  max-width: 164mm;
+  margin: 3.5mm auto 0;
+  color: var(--text-soft);
+  font-size: 8.9pt;
+  font-weight: 500;
+  line-height: 1.48;
+}
+
+.steps-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 4mm;
+  margin-top: 8mm;
+  align-items: stretch;
+}
+
+.step-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 150mm;
+
+  border: 1px solid rgba(127, 31, 32, var(--card-border-opacity));
+  border-radius: var(--card-radius);
+
+  background: rgba(255, 255, 255, var(--card-opacity));
+
+  box-shadow: var(--card-shadow);
+
+  overflow: hidden;
+  break-inside: avoid;
+}
+
+.step-top {
+  position: relative;
+  display: flex;
+  min-height: 42mm;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 3mm;
+  padding: 4mm 3mm 2mm;
+  background: transparent;
+}
+
+.step-number {
+  display: inline-flex;
+  width: 8.5mm;
+  height: 8.5mm;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--white);
+  background: var(--burgundy);
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 13pt;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  box-shadow: 0 3px 8px rgba(127, 31, 32, 0.16);
+}
+
+.step-icon {
+  display: inline-flex;
+  width: 23mm;
+  height: 23mm;
+  align-items: center;
+  justify-content: center;
+  color: var(--burgundy);
+  background: transparent;
+}
+
+.step-icon svg {
+  width: 20mm;
+  height: 20mm;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.step-card[data-step="rencontre"] .step-icon svg {
+  width: 22mm;
+  height: 22mm;
+  stroke-width: 3.2;
+}
+
+.step-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  padding: 2mm 4.2mm 5.5mm;
+  text-align: center;
+}
+
+.step-label {
+  margin: 0 0 2mm;
+  color: var(--duck-blue);
+  font-size: 6.6pt;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.step-title {
+  margin: 0;
+  color: var(--burgundy);
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 10.3pt;
+  font-weight: 700;
+  line-height: 1.18;
+  text-transform: uppercase;
+}
+
+.step-rule {
+  width: 18mm;
+  height: 1px;
+  margin: 3mm 0 3.5mm;
+  background: var(--gold);
+}
+
+.step-text {
+  margin: 0;
+  color: var(--text);
+  font-size: 8.05pt;
+  font-weight: 500;
+  line-height: 1.48;
+  text-align: left;
+}
+
+.menu-footer {
+  position: absolute;
+  z-index: 2;
+  right: 11mm;
+  bottom: 13mm;
+  left: 11mm;
+  padding-top: 4mm;
+}
+
+.footer-divider {
+  display: flex;
+  align-items: center;
+  gap: 4mm;
+  margin-bottom: 3mm;
+}
+
+.footer-divider-line {
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold),
+    transparent
+  );
+}
+
+.footer-divider-mark {
+  color: var(--gold);
+  font-size: 11pt;
+  line-height: 1;
+}
+
+.footer-main {
+  display: grid;
+  grid-template-columns: 1.08fr 0.9fr 1.08fr;
+  align-items: end;
+  gap: 6mm;
+}
+
+.personalization-note {
+  position: relative;
+  min-height: 22mm;
+  padding: 4.2mm 5mm 3.8mm 9mm;
+  color: var(--burgundy);
+  background: rgba(247, 228, 214, 0.74);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 9.7pt;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.35;
+  clip-path: polygon(
+    0 4%,
+    94% 0,
+    100% 12%,
+    96% 30%,
+    100% 48%,
+    95% 70%,
+    100% 91%,
+    88% 100%,
+    0 96%
+  );
+
+}
+
+.personalization-heart {
+  position: absolute;
+  left: 3mm;
+  top: 4mm;
+  color: var(--burgundy);
+  font-size: 22pt;
+  font-style: normal;
+}
+
+
+.footer-brand {
+  text-align: center;
+}
+
+.footer-logo {
+  display: block;
+  width: 19mm;
+  height: 15mm;
+  margin: 0 auto -1mm;
+  object-fit: contain;
+  opacity: 1;
+  transform: translateY(2.2mm) scale(1.5);
+  transform-origin: center bottom;
+}
+
+.footer-brand-name {
+  margin: 0;
+  color: var(--burgundy);
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 16pt;
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+.footer-brand-activity {
+  margin: 1.5mm 0 0;
+  color: var(--duck-blue);
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 6.5pt;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+
+
+.contact-list {
+  display: grid;
+  gap: 2.1mm;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-item {
+  display: grid;
+  grid-template-columns: 5mm 1fr;
+  align-items: center;
+  gap: 2.3mm;
+  color: var(--text);
+  font-size: 8.8pt;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.contact-icon {
+  color: var(--burgundy);
+  font-size: 10pt;
+  text-align: center;
+}
+
+.footer-bottom {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 3mm 10mm 3.3mm;
+  color: var(--cream);
+  background: linear-gradient(90deg, var(--burgundy-dark), var(--burgundy), var(--burgundy-dark));
+  text-align: center;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 10pt;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.15;
+}
+
+@media screen and (max-width: 920px) {
+  body {
+    padding: 0;
+  }
+
+  .print-toolbar {
+    top: 8px;
+  }
+
+  .document-shell {
+    padding: 0;
+    overflow-x: auto;
+    justify-content: flex-start;
+  }
+
+  .document-page {
+    flex: 0 0 210mm;
+    box-shadow: none;
+  }
+}
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+
+
+@media print {
+  html,
+  body {
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
+    padding: 0;
+    background: var(--white);
+  }
+
+  .print-toolbar {
+    display: none !important;
+  }
+
+  .document-shell {
+    display: block;
+    padding: 0;
+  }
+
+  .document-page {
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
+    box-shadow: none;
+    page-break-after: avoid;
+    break-after: avoid-page;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  body.print-without-background .document-page {
+    background: transparent !important;
+  }
+
+  body.print-without-background .step-card {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  body.print-without-background .personalization-note {
+    background: transparent !important;
+    clip-path: none !important;
+    border-left: 2px solid var(--burgundy);
+  }
+
+  body.print-without-background .footer-bottom {
+    color: var(--burgundy) !important;
+    border-top: 1px solid var(--burgundy) !important;
+    background: transparent !important;
+  }
+
+  body.print-without-background .watermark {
+    display: block !important;
+  }
+}

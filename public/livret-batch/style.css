@@ -57,6 +57,7 @@ img {
   z-index: 100;
   display: flex;
   justify-content: center;
+  gap: 12px;
   margin-bottom: 20px;
   pointer-events: none;
 }
@@ -83,6 +84,16 @@ img {
   box-shadow: 0 12px 30px rgba(62, 46, 42, 0.22);
 }
 
+.print-button-light {
+  color: var(--burgundy);
+  border: 1px solid var(--burgundy);
+  background: var(--white);
+}
+
+.print-button-light:hover {
+  color: var(--white);
+  background: var(--burgundy);
+}
 .print-button:focus-visible {
   outline: 3px solid var(--duck-blue);
   outline-offset: 3px;
@@ -272,7 +283,7 @@ img {
   column-gap: 11mm;
   row-gap: 6mm;
     /* Espacement avec le haut de page : */
-  margin-top: 20mm;
+  margin-top: 2mm;
 }
 
 .category {
@@ -337,18 +348,19 @@ img {
   padding: 0 0 0 4.2mm;
 }
 
+/* Ajustement des différentes recettes dans la page */
 .recipe-item {
   margin: 0 0 1.8mm;
   padding-left: 0.5mm;
   color: var(--text);
-  font-size: 8.5pt;
+  font-size: 10pt;
   font-weight: 500;
-  line-height: 1.35;
+  line-height: 1.20;
 }
 
 .recipe-item::marker {
   color: var(--burgundy);
-  font-size: 7pt;
+  font-size: 15pt;
 }
 
 .recipe-name {
@@ -496,8 +508,8 @@ img {
   height: 15mm;
   margin: 0 auto -1mm;
   object-fit: contain;
-  opacity: 2;
-  /* filter: sepia(1) saturate(1.3); */
+  opacity: 1;
+  
   transform: translateY(2.2mm) scale(1.5);
   transform-origin: center bottom;
 }
@@ -555,7 +567,7 @@ img {
   background: linear-gradient(90deg, var(--burgundy-dark), var(--burgundy), var(--burgundy-dark));
   text-align: center;
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 9.9pt;
+  font-size: 10pt;
   font-weight: 600;
   font-style: italic;
   line-height: 1.15;
@@ -608,5 +620,44 @@ img {
     break-after: avoid-page;
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
+  }
+
+    /*
+   * ==========================================================
+   * IMPRESSION SANS FOND
+   * ==========================================================
+   *
+   * Conserve les textes, le filigrane, les pictogrammes,
+   * les bordures et les couleurs de la marque.
+   * Supprime uniquement les grands fonds et décors de page.
+   */
+
+  body.print-without-background .menu-page {
+    background: transparent !important;
+  }
+
+  body.print-without-background .page-decor::before,
+  body.print-without-background .page-decor::after {
+    display: none !important;
+  }
+
+  body.print-without-background .personalization-note {
+    background: transparent !important;
+    clip-path: none !important;
+    border-left: 2px solid var(--burgundy);
+  }
+
+  body.print-without-background .legend-card {
+    background: transparent !important;
+  }
+
+  body.print-without-background .seasonal-banner {
+    color: var(--burgundy) !important;
+    border-top: 1px solid var(--burgundy) !important;
+    background: transparent !important;
+  }
+
+  body.print-without-background .watermark {
+    display: block !important;
   }
 }
