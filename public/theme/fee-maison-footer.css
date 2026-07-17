@@ -42,7 +42,7 @@
    CONTENEUR GÉNÉRAL DU FOOTER
    ---------------------------------------------------------- */
 
-.menu-footer {
+/*  .menu-footer {
   position: relative;
 
   width: 100%;
@@ -61,6 +61,7 @@
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
 }
+  */
 
 
 /* ----------------------------------------------------------
@@ -1196,12 +1197,12 @@ body.without-background
    au-dessus du bandeau.
 */
 
-.menu-footer > .footer-divider,
+/* .menu-footer > .footer-divider,
 .menu-footer > .footer-main {
   margin-right: var(--page-padding-x, 0mm);
   margin-left: var(--page-padding-x, 0mm);
 }
-
+*/
 
 /* Le bandeau, lui, reste réellement bord à bord */
 
@@ -1266,4 +1267,253 @@ body.without-background
   .footer-bottom {
     border-radius: 0;
   }
+}
+
+/* ==========================================================
+   CORRECTION DU DÉBORDEMENT HORIZONTAL
+   ========================================================== */
+
+.menu-footer {
+  box-sizing: border-box;
+
+  width: 100%;
+  max-width: 100%;
+
+  margin-right: 0;
+  margin-left: 0;
+
+  overflow: visible;
+}
+
+.footer-divider,
+.footer-main,
+.contact-list,
+.footer-signature {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+
+/* ==========================================================
+   TEST DE RECENTRAGE — À LA TOUTE FIN DU FICHIER
+   ========================================================== */
+
+.menu-footer {
+  position: relative !important;
+
+  left: 0 !important;
+  right: auto !important;
+
+  width: 100% !important;
+  max-width: none !important;
+
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+
+  transform: none !important;
+}
+
+.menu-footer .footer-main,
+.menu-footer .footer-divider {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+
+  transform: none !important;
+}
+
+.menu-footer .footer-signature,
+.menu-footer .footer-note,
+.menu-footer .footer-bottom {
+  width: 100% !important;
+
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+
+  transform: none !important;
+}
+
+/* ==========================================================
+   MARQUE DU FOOTER EN DISPOSITION VERTICALE
+   Logo au-dessus de FÉE MAISON
+   ========================================================== */
+
+.menu-footer .footer-brand {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 1mm !important;
+
+  width: 100% !important;
+  min-width: 0 !important;
+
+  text-align: center !important;
+}
+
+
+/* Conteneur du logo */
+
+.menu-footer .footer-logo-wrapper {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: 16mm !important;
+  height: 16mm !important;
+
+  margin: 0 auto !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+
+/* Image de la petite dame */
+
+.menu-footer .footer-logo {
+  display: block !important;
+
+  width: 16mm !important;
+  height: 16mm !important;
+
+  margin: 0 auto !important;
+
+  object-fit: contain !important;
+  object-position: center !important;
+
+  border-radius: 0 !important;
+}
+
+
+/* Bloc des deux lignes de texte */
+
+.menu-footer .footer-brand-text {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5mm !important;
+
+  width: 100% !important;
+
+  text-align: center !important;
+}
+
+
+/* FÉE MAISON */
+
+.menu-footer .footer-brand-name {
+  margin: 0 !important;
+
+  font-size: 11.5pt !important;
+  line-height: 1 !important;
+  letter-spacing: 0.035em !important;
+
+  text-align: center !important;
+  white-space: nowrap !important;
+}
+
+
+/* CUISINIÈRE À DOMICILE */
+
+.menu-footer .footer-brand-activity {
+  margin: 0 !important;
+
+  font-size: 6.4pt !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0.08em !important;
+
+  text-align: center !important;
+  white-space: nowrap !important;
+}
+
+/* ==========================================================
+   PERSONNALISATION PLUS COMPACTE
+   ========================================================== */
+
+.menu-footer .footer-personalization,
+.menu-footer .personalization-note {
+  min-height: 0 !important;
+
+  gap: 1.5mm !important;
+
+  padding: 2.2mm 2.8mm !important;
+
+  border-radius: 3.5mm !important;
+
+  font-size: 7pt !important;
+  line-height: 1.22 !important;
+}
+
+
+
+
+
+/* Texte du cartouche */
+
+.menu-footer .footer-personalization-text,
+.menu-footer .footer-personalization > p,
+.menu-footer .personalization-note > p {
+  margin: 0 !important;
+
+  font-size: inherit !important;
+  line-height: inherit !important;
+}
+
+
+/* Largeur mieux maîtrisée */
+
+.menu-footer .footer-main > .footer-personalization,
+.menu-footer .footer-main > .personalization-note {
+  max-width: 52mm !important;
+}
+
+/* Décalage du cœur dans le cartouche */
+
+
+
+/* ==========================================================
+   CARTOUCHE PERSONNALISATION
+   Contenu légèrement décalé vers la gauche
+   ========================================================== */
+
+.menu-footer .footer-personalization,
+.menu-footer .personalization-note {
+
+    justify-content: flex-start !important;
+
+    padding-left: 0.1mm !important;
+    padding-right: 0.1mm !important;
+}
+
+
+/* Le cœur reste collé au bord gauche */
+
+
+
+/* Le texte commence juste après le cœur */
+
+.menu-footer .footer-personalization-text,
+.menu-footer .footer-personalization > p {
+
+    flex: 1;
+
+    text-align: left;
+}
+
+
+/* Déplacer uniquement le rond avec le cœur vers la gauche */
+
+.menu-footer .personalization-heart {
+  position: relative !important;
+  left: 0mm !important;
+
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+
+  transform: none !important;
 }
