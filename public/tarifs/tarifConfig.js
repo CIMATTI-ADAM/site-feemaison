@@ -154,7 +154,7 @@ const tarifConfig = {
         "Les ingrédients ne sont pas compris dans le tarif de la prestation",
 
       highlight:
-        "Une formule adaptée aux familles, aux couples souhaitant prévoir plusieurs repas et aux personnes qui souhaitent congeler une partie des préparations."
+        "Une formule adaptée aux familles ou aux couples souhaitant prévoir plusieurs repas. Pour les personnes seules, il faudra congeler une partie des préparations."
     },
 
     /* ========================================================
@@ -173,7 +173,7 @@ const tarifConfig = {
       portionBadge: "Formules 2 parts",
 
       introduction:
-        "Cette formule convient particulièrement à un couple. Elle peut également répondre aux besoins d’une personne seule qui souhaite manger deux fois le même plat dans la semaine ou congeler une portion.",
+        "Cette formule convient particulièrement à un couple. Elle peut également répondre aux besoins d’une personne seule qui accepte de manger deux fois le même plat dans la semaine ou congeler une portion.",
 
       section: {
         icon: "2",
@@ -269,7 +269,7 @@ const tarifConfig = {
       portionBadge: "Formules 1 part",
 
       introduction:
-        "Cette formule permet de manger un plat différent chaque jour, sans avoir à consommer deux fois la même recette et sans devoir congeler les portions restantes. La préparation de chaque recette en quantité individuelle demande davantage de temps et entraîne donc un tarif plus élevé.",
+        "Cette formule permet de manger un plat différent chaque jour, sans avoir à consommer deux fois la même recette ni devoir congeler les portions restantes. La préparation de chaque recette en quantité individuelle demande quasiment autant de temps et entraîne un tarif par part plus élevé.",
 
       section: {
         icon: "1",

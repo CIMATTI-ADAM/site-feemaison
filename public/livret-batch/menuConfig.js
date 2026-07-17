@@ -75,7 +75,7 @@ window.menuConfig = {
   booklet: {
     title: "Fée Maison",
 
-    topLabel: "Cheffe à domicile • Batch cooking",
+    topLabel: "Fée Maison • Batch cooking à domicile",
 
     slogan: "Une cuisine sur mesure pour savourer votre quotidien !",
 

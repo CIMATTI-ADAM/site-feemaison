@@ -33,7 +33,7 @@
       </button>
     </div>
 
-    <script src="/theme/fee-maison-footer.js"></script>
+    
 
     <main class="document-shell">
       <section
@@ -43,6 +43,9 @@
     </main>
 
     <script src="./deroulementConfig.js"></script>
+    <script src="/theme/fee-maison-footer.js"></script>
+
+
 
     <script>
       const config = window.deroulementConfig;
@@ -326,7 +329,7 @@
           </article>
         `;
       }
-            /**
+    /**
        * Génère tout le document.
        */
       function render() {
@@ -339,9 +342,15 @@
 
           <header class="page-header">
 
-            <p class="top-label">
-              ${escapeHtml(config.document.topLabel)}
-            </p>
+            <div class="top-label-row">
+                <span class="top-label-line"></span>
+
+                <p class="top-label">
+                    ${escapeHtml(config.document.topLabel)}
+                </p>
+
+                <span class="top-label-line"></span>
+            </div>
 
             <h1 class="page-title">
               ${escapeHtml(config.document.title)}
@@ -375,11 +384,24 @@
 
           
 
-          <div class="footer-bottom">
+          ${
+            typeof window.createFeeMaisonFooter === "function"
+                ? window.createFeeMaisonFooter({
+                    business: config.business || {},
 
-            ${escapeHtml(config.document.footerNote)}
+                    personalizationText:
+                    config.document.personalizationText ||
+                    "Chaque prestation est adaptée à vos goûts, à vos besoins, à votre rythme de vie et à votre organisation familiale.",
 
-          </div>
+                    footerNote:
+                    config.document.footerNote ||
+                    "Une cuisine maison, généreuse et personnalisée, directement chez vous.",
+
+                    displayConfig:
+                    config.display || {}
+                })
+            : ""
+            }
         `;
       }
 

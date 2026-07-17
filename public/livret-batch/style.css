@@ -263,7 +263,7 @@ img {
   max-width: 142mm;
   margin: 3.5mm auto 0;
   color: var(--text);
-  font-size: 8.7pt;
+  font-size: 10.5pt;
   font-weight: 500;
   line-height: 1.45;
 }
@@ -281,9 +281,9 @@ img {
     "quiche gratin"
     "dessert legend";
   column-gap: 11mm;
-  row-gap: 6mm;
+  row-gap: 4mm;
     /* Espacement avec le haut de page : */
-  margin-top: 2mm;
+  margin-top: 1mm;
 }
 
 .category {
@@ -660,4 +660,228 @@ img {
   body.print-without-background .watermark {
     display: block !important;
   }
+}
+
+/* ==========================================================
+   AJUSTEMENTS DU FOOTER — CARTE DES PLATS UNIQUEMENT
+   ========================================================== */
+
+
+/* Footer global plus compact */
+
+#menu-page .menu-footer .footer-divider {
+  margin-bottom: 2mm !important;
+}
+
+#menu-page .menu-footer .footer-main {
+  grid-template-columns:
+    minmax(58mm, 1fr)
+    minmax(43mm, 0.78fr)
+    minmax(58mm, 1fr);
+
+  align-items: center;
+
+  gap: 3mm !important;
+
+  padding-top: 0 !important;
+  padding-bottom: 2mm !important;
+}
+
+
+/* ----------------------------------------------------------
+   CARTOUCHE DE PERSONNALISATION
+   Plus large, mais sans augmenter fortement sa hauteur
+   ---------------------------------------------------------- */
+
+#menu-page .menu-footer .footer-personalization,
+#menu-page .menu-footer .personalization-note {
+  width: 100% !important;
+  max-width: 58mm !important;
+  min-height: 18mm !important;
+
+  padding: 2.2mm 3mm !important;
+
+  gap: 1.8mm !important;
+
+  font-size: 8pt !important;
+  line-height: 1.22 !important;
+}
+
+
+/* Cœur légèrement remonté */
+
+#menu-page .menu-footer .personalization-heart {
+  align-self: flex-start !important;
+
+  margin-top: 0.8mm !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+
+  position: relative !important;
+  top: -0.8mm !important;
+  left: 0 !important;
+}
+
+
+/* ----------------------------------------------------------
+   LOGO : SUPPRESSION DE L’ÉCRASEMENT
+   ---------------------------------------------------------- */
+
+#menu-page .menu-footer .footer-logo-wrapper {
+  width: 18mm !important;
+  height: 18mm !important;
+
+  overflow: visible !important;
+}
+
+
+/*
+   On ne force plus simultanément la largeur et la hauteur
+   de l’image, afin de respecter ses proportions.
+*/
+
+#menu-page .menu-footer .footer-logo {
+  width: auto !important;
+  height: 18mm !important;
+
+  max-width: 22mm !important;
+  max-height: 18mm !important;
+
+  object-fit: contain !important;
+  object-position: center !important;
+}
+
+
+/* Marque plus compacte */
+
+#menu-page .menu-footer .footer-brand {
+  gap: 0.5mm !important;
+}
+
+#menu-page .menu-footer .footer-brand-name {
+  font-size: 11pt !important;
+}
+
+#menu-page .menu-footer .footer-brand-activity {
+  font-size: 6.2pt !important;
+}
+
+
+/* ----------------------------------------------------------
+   COORDONNÉES PLUS COMPACTES
+   ---------------------------------------------------------- */
+
+#menu-page .menu-footer .contact-list {
+  gap: 1.3mm !important;
+
+  font-size: 7.4pt !important;
+}
+
+#menu-page .menu-footer .contact-icon {
+  width: 4.7mm !important;
+  height: 4.7mm !important;
+}
+
+
+/* ----------------------------------------------------------
+   BANDEAU FINAL MOINS HAUT
+   ---------------------------------------------------------- */
+
+#menu-page .menu-footer .footer-signature {
+  min-height: 10.5mm !important;
+
+  padding-top: 1.8mm !important;
+  padding-bottom: 1.8mm !important;
+
+  font-size: 10.5pt !important;
+}
+
+
+/* ==========================================================
+   RÉCUPÉRER DE LA PLACE POUR LES RECETTES ET LA LÉGENDE
+   ========================================================== */
+
+#menu-page .menu-main {
+  margin-bottom: 0 !important;
+}
+
+#menu-page .categories-grid {
+  margin-bottom: 0 !important;
+}
+
+
+/*
+   Le footer est légèrement remonté, sans déplacer
+   individuellement les recettes ou la légende.
+*/
+
+#menu-page .menu-footer {
+  margin-top: 1mm !important;
+}
+
+/* ==========================================================
+   AJUSTEMENTS VISUELS — CARTE DES PLATS
+   Logo plus petit et légende légèrement remontée
+   ========================================================== */
+
+
+/* ----------------------------------------------------------
+   LOGO PLUS PETIT ET PLUS PROCHE DE FÉE MAISON
+   ---------------------------------------------------------- */
+
+#menu-page .menu-footer .footer-logo-wrapper {
+  width: 13.5mm !important;
+  height: 13.5mm !important;
+
+  margin-bottom: -0.5mm !important;
+}
+
+#menu-page .menu-footer .footer-logo {
+  width: auto !important;
+  height: 13.5mm !important;
+
+  max-width: 16mm !important;
+  max-height: 13.5mm !important;
+
+  object-fit: contain !important;
+}
+
+
+/* Rapprocher l’illustration du nom */
+
+#menu-page .menu-footer .footer-brand {
+  gap: 0 !important;
+}
+
+#menu-page .menu-footer .footer-brand-text {
+  gap: 0.3mm !important;
+}
+
+#menu-page .menu-footer .footer-brand-name {
+  margin-top: -0.6mm !important;
+}
+
+
+/* ----------------------------------------------------------
+   LÉGENDE UN PEU PLUS HAUTE
+   ---------------------------------------------------------- */
+
+#menu-page .legend-card,
+#menu-page .menu-legend,
+#menu-page .legend {
+  position: relative;
+
+  top: -2mm;
+}
+
+
+/*
+   Si la légende utilise uniquement une classe différente,
+   ce sélecteur agit sur le dernier bloc de la grille.
+*/
+
+#menu-page .categories-grid > :last-child {
+  position: relative;
+
+  top: -2mm;
 }
