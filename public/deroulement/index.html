@@ -11,6 +11,7 @@
     <title>Déroulement d’une prestation - Fée Maison</title>
 
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="/theme/fee-maison-footer.css">
   </head>
 
   <body>
@@ -31,6 +32,8 @@
         Imprimer sans fond
       </button>
     </div>
+
+    <script src="/theme/fee-maison-footer.js"></script>
 
     <main class="document-shell">
       <section
@@ -370,115 +373,7 @@
 
           </section>
 
-          <footer class="menu-footer">
-
-  <div class="footer-divider">
-    <span class="footer-divider-line"></span>
-
-    <span
-      class="footer-divider-mark"
-      aria-hidden="true"
-    >
-      ✦
-    </span>
-
-    <span class="footer-divider-line"></span>
-  </div>
-
-  <div class="footer-main">
-
-    ${
-      config.display?.showPersonalizationBlock !== false
-        ? `
-          <aside class="personalization-note">
-            <span
-              class="personalization-heart"
-              aria-hidden="true"
-            >
-              ♥
-            </span>
-
-            ${escapeHtml(
-              config.document.personalizationText
-            )}
-          </aside>
-        `
-        : ""
-    }
-
-    <div class="footer-brand">
-
-      ${
-        config.display?.showLogoInFooter !== false
-          ? `
-            <img
-              class="footer-logo"
-              src="${escapeHtml(
-                config.business.logoUrl
-              )}"
-              alt=""
-              aria-hidden="true"
-            />
-          `
-          : ""
-      }
-
-      <p class="footer-brand-name">
-        ${escapeHtml(config.business.name)}
-      </p>
-
-      <p class="footer-brand-activity">
-        ${escapeHtml(config.business.activity)}
-      </p>
-
-    </div>
-
-    <ul class="contact-list">
-
-      <li class="contact-item">
-        <span
-          class="contact-icon"
-          aria-hidden="true"
-        >
-          ☎
-        </span>
-
-        <span>
-          ${escapeHtml(config.business.phone)}
-        </span>
-      </li>
-
-      <li class="contact-item">
-        <span
-          class="contact-icon"
-          aria-hidden="true"
-        >
-          ✉
-        </span>
-
-        <span>
-          ${escapeHtml(config.business.email)}
-        </span>
-      </li>
-
-      <li class="contact-item">
-        <span
-          class="contact-icon"
-          aria-hidden="true"
-        >
-          ⌂
-        </span>
-
-        <span>
-          ${escapeHtml(config.business.website)}
-        </span>
-      </li>
-
-    </ul>
-
-  </div>
-
-</footer>
+          
 
           <div class="footer-bottom">
 

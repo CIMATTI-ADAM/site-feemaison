@@ -1,0 +1,917 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Montserrat:wght@400;500;600;700&display=swap");
+
+:root {
+  /* ==========================================================
+     COULEURS FÉE MAISON
+     ========================================================== */
+
+  --burgundy: #7f1f20;
+  --burgundy-dark: #651718;
+  --burgundy-soft: #a84b4c;
+
+  --cream: #f7e4d6;
+  --cream-light: #fff9f4;
+  --cream-soft: #fbefe6;
+
+  --duck-blue: #18727d;
+  --duck-blue-light: #e8f3f3;
+
+  --gold: #c99d5d;
+  --gold-light: #e8cfab;
+
+  --green: #6e8b4e;
+  --green-light: #edf3e8;
+
+  --text: #3e2e2a;
+  --text-soft: #725f58;
+
+  --white: #ffffff;
+
+  /* ==========================================================
+     FILIGRANE
+     ========================================================== */
+
+  --watermark-opacity: 0.248;
+  --watermark-width: 175mm;
+  --watermark-position-x: center;
+  --watermark-position-y: 54%;
+
+  /* ==========================================================
+     PARAMÈTRES COMMUNS
+     ========================================================== */
+
+  --card-opacity: 0.68;
+  --card-border-opacity: 0.1;
+  --card-radius: 5mm;
+  --card-shadow: 0 5px 16px rgba(62, 46, 42, 0.055);
+
+  --divider-opacity: 0.55;
+
+  --footer-logo-scale: 1.5;
+  --footer-logo-offset: 2.2mm;
+
+  --personalization-font-size: 9.7pt;
+}
+
+/* ==========================================================
+   BASE
+   ========================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: #e7e4e1;
+}
+
+body {
+  margin: 0;
+  padding: 24px 0 64px;
+  color: var(--text);
+  background: #e7e4e1;
+  font-family: "Montserrat", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* ==========================================================
+   BARRE D’IMPRESSION
+   ========================================================== */
+
+.print-toolbar {
+  position: sticky;
+  top: 12px;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  pointer-events: none;
+}
+
+.print-button {
+  pointer-events: auto;
+  min-height: 44px;
+  padding: 11px 22px;
+  border: 1px solid var(--burgundy);
+  border-radius: 999px;
+  color: var(--white);
+  background: var(--burgundy);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(62, 46, 42, 0.18);
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.print-button:hover {
+  background: var(--burgundy-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 30px rgba(62, 46, 42, 0.22);
+}
+
+.print-button-light {
+  color: var(--burgundy);
+  background: var(--white);
+}
+
+.print-button-light:hover {
+  color: var(--white);
+  background: var(--burgundy);
+}
+
+.print-button:focus-visible {
+  outline: 3px solid var(--duck-blue);
+  outline-offset: 3px;
+}
+
+/* ==========================================================
+   CONTENEUR DES TROIS PAGES
+   ========================================================== */
+
+.tarifs-shell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  padding: 0 12px;
+}
+
+/* ==========================================================
+   PAGE A4
+   ========================================================== */
+
+.tarif-page {
+  position: relative;
+  width: 210mm;
+  height: 297mm;
+  overflow: hidden;
+  color: var(--text);
+  background:
+    radial-gradient(
+      circle at 88% 12%,
+      rgba(127, 31, 32, 0.035),
+      transparent 28%
+    ),
+    linear-gradient(
+      180deg,
+      var(--cream-light) 0%,
+      #fffaf6 58%,
+      #fff8f2 100%
+    );
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.14);
+  page-break-after: always;
+  break-after: page;
+}
+
+.tarif-page:last-child {
+  page-break-after: auto;
+  break-after: auto;
+}
+
+.page-content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  width: 100%;
+  height: 100%;
+  padding: 10mm 11mm 0;
+}
+
+/* ==========================================================
+   FILIGRANE
+   ========================================================== */
+
+.watermark {
+  position: absolute;
+  z-index: 0;
+  left: var(--watermark-position-x);
+  top: var(--watermark-position-y);
+  width: var(--watermark-width);
+  max-width: none;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+  opacity: var(--watermark-opacity);
+  pointer-events: none;
+  user-select: none;
+  filter: sepia(1) saturate(0.55) hue-rotate(330deg);
+}
+
+/* ==========================================================
+   EN-TÊTE DES PAGES
+   ========================================================== */
+
+.page-header {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.top-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7mm;
+  margin-bottom: 3mm;
+}
+
+.top-label-line {
+  width: 38mm;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold),
+    transparent
+  );
+}
+
+.top-label {
+  margin: 0;
+  color: var(--burgundy);
+  font-size: 8.2pt;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.page-title {
+  margin: 0;
+  color: var(--burgundy);
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 27pt;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0.015em;
+  text-transform: uppercase;
+}
+
+.page-subtitle {
+  margin: 2.5mm 0 0;
+  color: var(--duck-blue);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 15pt;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.2;
+}
+
+.title-divider {
+  width: 46mm;
+  height: 1px;
+  margin: 4mm auto 3.5mm;
+  background: var(--gold);
+}
+
+.page-introduction {
+  max-width: 170mm;
+  margin: 0 auto;
+  color: var(--text-soft);
+  font-size: 10.5pt;
+  font-weight: 500;
+  line-height: 1.42;
+}
+
+.portion-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4mm;
+  padding: 2.7mm 6mm;
+  border: 1px solid rgba(24, 114, 125, 0.25);
+  border-radius: 999px;
+  color: var(--duck-blue);
+  background: var(--duck-blue-light);
+  font-size: 9.4pt;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+/* ==========================================================
+   CONTENU PRINCIPAL DES TARIFS
+   ========================================================== */
+
+.tarif-main {
+  position: relative;
+  z-index: 2;
+  min-height: 0;
+  padding-top: 7mm;
+}
+
+.tarif-section {
+  width: 100%;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  gap: 4mm;
+  margin-bottom: 5mm;
+}
+
+.section-icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: 11mm;
+  height: 11mm;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--white);
+  background: var(--burgundy);
+  font-size: 13pt;
+  font-weight: 700;
+  box-shadow: 0 4px 11px rgba(127, 31, 32, 0.14);
+}
+
+.section-heading-text {
+  min-width: 0;
+  flex: 1;
+}
+
+.section-title {
+  margin: 0;
+  color: var(--burgundy);
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 15pt;
+  font-weight: 700;
+  line-height: 1.12;
+  text-transform: uppercase;
+}
+
+.section-subtitle {
+  margin: 1.2mm 0 0;
+  color: var(--text-soft);
+  font-size: 9.7pt;
+  font-weight: 500;
+  line-height: 1.38;
+}
+
+.section-rule {
+  width: 100%;
+  height: 1px;
+  margin-top: 2.5mm;
+  background: linear-gradient(
+    90deg,
+    var(--gold),
+    rgba(201, 157, 93, 0.12)
+  );
+}
+
+/* ==========================================================
+   GRILLE DES FORMULES
+   ========================================================== */
+
+.tarif-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5mm;
+}
+
+.tarif-card {
+  position: relative;
+  display: flex;
+  min-height: 44mm;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5mm 5.5mm;
+  overflow: hidden;
+  border: 1px solid rgba(
+    127,
+    31,
+    32,
+    var(--card-border-opacity)
+  );
+  border-radius: var(--card-radius);
+  background: rgba(
+    255,
+    255,
+    255,
+    var(--card-opacity)
+  );
+  box-shadow: var(--card-shadow);
+  break-inside: avoid;
+}
+
+.tarif-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 2.4mm;
+  background: var(--burgundy);
+}
+
+.tarif-card[data-color="gold"]::before {
+  background: var(--gold);
+}
+
+.tarif-card[data-color="sage"]::before {
+  background: var(--green);
+}
+
+.tarif-card[data-color="terracotta"]::before {
+  background: var(--burgundy-soft);
+}
+
+.tarif-card[data-color="duck"]::before {
+  background: var(--duck-blue);
+}
+
+.tarif-card-header {
+  padding-top: 2mm;
+}
+
+.tarif-card-title {
+  margin: 0;
+  color: var(--burgundy);
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 12.4pt;
+  font-weight: 700;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.tarif-card-description {
+  margin: 2.2mm 0 0;
+  color: var(--text-soft);
+  font-size: 9.6pt;
+  font-weight: 500;
+  line-height: 1.42;
+}
+
+.tarif-price-zone {
+  margin-top: 4mm;
+}
+
+.tarif-price {
+  margin: 0;
+  color: var(--burgundy);
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 20pt;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.tarif-full-price {
+  margin: 1.5mm 0 0;
+  color: var(--text-soft);
+  font-size: 9pt;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.tarif-tax-note {
+  margin: 2mm 0 0;
+  color: var(--duck-blue);
+  font-size: 8.7pt;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+/* ==========================================================
+   NOTE SOUS LES TARIFS
+   ========================================================== */
+
+.tarif-note {
+  margin-top: 5mm;
+  padding: 4mm 5mm;
+  border-left: 2px solid var(--gold);
+  color: var(--text-soft);
+  background: rgba(255, 255, 255, 0.5);
+  font-size: 9.5pt;
+  font-weight: 500;
+  line-height: 1.45;
+  white-space: pre-line;
+}
+
+.tarif-highlight {
+  margin-top: 5mm;
+  padding: 4.5mm 5mm;
+  border: 1px solid rgba(24, 114, 125, 0.18);
+  border-radius: 4mm;
+  color: var(--duck-blue);
+  background: rgba(232, 243, 243, 0.58);
+  font-size: 9.8pt;
+  font-weight: 600;
+  line-height: 1.42;
+  text-align: center;
+}
+
+/* ==========================================================
+   PIED DE PAGE COMMUN
+   ========================================================== */
+
+.menu-footer {
+  position: relative;
+  z-index: 3;
+  width: calc(100% + 22mm);
+  margin-left: -11mm;
+  padding: 0 11mm 5mm;
+}
+
+.footer-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3mm;
+  margin-bottom: 3.5mm;
+}
+
+.footer-divider-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(201, 157, 93, var(--divider-opacity));
+}
+
+.footer-divider-mark {
+  flex: 0 0 auto;
+  color: var(--gold);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 14pt;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.footer-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(42mm, 0.8fr);
+  gap: 8mm;
+  align-items: center;
+}
+
+.personalization-note {
+  position: relative;
+  min-height: 25mm;
+  display: flex;
+  align-items: center;
+  padding: 4mm 5mm 4mm 14mm;
+  border: 1px solid rgba(127, 31, 32, 0.1);
+  border-radius: var(--card-radius);
+  color: var(--text-soft);
+  background: rgba(255, 255, 255, 0.55);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: var(--personalization-font-size);
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.35;
+  box-shadow: var(--card-shadow);
+}
+
+.personalization-heart {
+  position: absolute;
+  left: 4.5mm;
+  top: 50%;
+  display: inline-flex;
+  width: 7mm;
+  height: 7mm;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%);
+  color: var(--burgundy);
+  font-family: Georgia, serif;
+  font-size: 13pt;
+  font-style: normal;
+  line-height: 1;
+}
+
+.footer-brand {
+  display: grid;
+  grid-template-columns: 19mm minmax(47mm, 1fr);
+  gap: 3mm;
+  align-items: center;
+}
+
+.footer-logo {
+  display: block;
+  width: 19mm;
+  height: 19mm;
+  object-fit: contain;
+  transform:
+    translateY(var(--footer-logo-offset))
+    scale(var(--footer-logo-scale));
+  transform-origin: center;
+}
+
+.footer-brand-copy {
+  min-width: 0;
+}
+
+.footer-brand-name {
+  margin: 0;
+  color: var(--burgundy);
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 15.5pt;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.footer-brand-activity {
+  margin: 1.2mm 0 0;
+  color: var(--duck-blue);
+  font-size: 7.35pt;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ==========================================================
+   COORDONNÉES
+   ========================================================== */
+
+.contact-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.8mm 5mm;
+  margin-top: 3.5mm;
+  padding: 2.8mm 4mm;
+  border-top: 1px solid rgba(201, 157, 93, 0.34);
+  color: var(--text-soft);
+}
+
+.contact-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.4mm;
+  min-width: 0;
+  color: inherit;
+  font-size: 8pt;
+  font-weight: 600;
+  line-height: 1.25;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.contact-item:hover {
+  color: var(--burgundy);
+}
+
+.contact-icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: 4.6mm;
+  height: 4.6mm;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--white);
+  background: var(--burgundy);
+  font-size: 6.7pt;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.contact-icon svg {
+  display: block;
+  width: 2.8mm;
+  height: 2.8mm;
+}
+
+.footer-bottom {
+  margin: 2mm 0 0;
+  color: var(--text-soft);
+  font-size: 6pt;
+  font-weight: 500;
+  line-height: 1.3;
+  text-align: center;
+}
+
+/* ==========================================================
+   MASQUAGE CONDITIONNEL
+   ========================================================== */
+
+.is-hidden {
+  display: none !important;
+}
+
+/* ==========================================================
+   IMPRESSION SANS FOND
+   La classe est ajoutée au body par le bouton correspondant.
+   ========================================================== */
+
+body.print-without-background .tarif-page {
+  background: var(--white);
+}
+
+body.print-without-background .watermark {
+  display: none;
+}
+
+body.print-without-background .tarif-card,
+body.print-without-background .tarif-note,
+body.print-without-background .tarif-highlight,
+body.print-without-background .personalization-note {
+  background: var(--white);
+  box-shadow: none;
+}
+
+body.print-without-background .tarif-card {
+  border-color: rgba(127, 31, 32, 0.18);
+}
+
+/* ==========================================================
+   IMPRESSION
+   ========================================================== */
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+  }
+
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .print-toolbar {
+    display: none !important;
+  }
+
+  .tarifs-shell {
+    display: block;
+    padding: 0;
+  }
+
+  .tarif-page {
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
+    box-shadow: none;
+  }
+
+  .tarif-page,
+  .tarif-card,
+  .tarif-note,
+  .tarif-highlight,
+  .personalization-note {
+    break-inside: avoid;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+/* ==========================================================
+   AFFICHAGE SUR ÉCRAN
+   ========================================================== */
+
+@media screen and (max-width: 900px) {
+  body {
+    padding-top: 12px;
+  }
+
+  .print-toolbar {
+    position: relative;
+    top: auto;
+    flex-wrap: wrap;
+    padding: 0 12px;
+  }
+
+  .print-button {
+    flex: 1 1 220px;
+    max-width: 290px;
+  }
+
+  .tarifs-shell {
+    align-items: flex-start;
+    overflow-x: auto;
+    padding: 0 16px 24px;
+  }
+
+  .tarif-page {
+    flex: 0 0 210mm;
+  }
+}
+
+/* ==========================================================
+   AJUSTEMENTS POUR LES PETITS CONTENUS
+   ========================================================== */
+
+.tarif-page.is-compact .tarif-main {
+  padding-top: 5mm;
+}
+
+.tarif-page.is-compact .tarif-card {
+  min-height: 40mm;
+}
+
+.tarif-page.is-compact .page-introduction {
+  max-width: 172mm;
+}
+
+.tarif-page.is-compact .tarif-note,
+.tarif-page.is-compact .tarif-highlight {
+  margin-top: 4mm;
+}
+
+/* ==========================================================
+   AJUSTEMENTS POUR LES CONTENUS PLUS DENSES
+   ========================================================== */
+
+.tarif-page.is-dense .page-content {
+  padding-top: 8mm;
+}
+
+.tarif-page.is-dense .page-title {
+  font-size: 24pt;
+}
+
+.tarif-page.is-dense .page-subtitle {
+  font-size: 13.5pt;
+}
+
+.tarif-page.is-dense .page-introduction {
+  font-size: 8.2pt;
+  line-height: 1.4;
+}
+
+.tarif-page.is-dense .tarif-main {
+  padding-top: 5mm;
+}
+
+.tarif-page.is-dense .tarif-cards {
+  gap: 4mm;
+}
+
+.tarif-page.is-dense .tarif-card {
+  min-height: 39mm;
+  padding: 4.5mm 5mm;
+}
+
+.tarif-page.is-dense .tarif-card-title {
+  font-size: 11.5pt;
+}
+
+.tarif-page.is-dense .tarif-price {
+  font-size: 18pt;
+}
+
+.tarif-page.is-dense .tarif-note,
+.tarif-page.is-dense .tarif-highlight {
+  margin-top: 3.5mm;
+  padding-top: 3.5mm;
+  padding-bottom: 3.5mm;
+}
+
+.tarif-page.is-dense .personalization-note {
+  min-height: 22mm;
+  font-size: 9pt;
+}
+
+/* ==========================================================
+   IMPRESSION DES COULEURS SUR CERTAINS NAVIGATEURS
+   ========================================================== */
+
+.tarif-page,
+.tarif-card,
+.tarif-card::before,
+.portion-badge,
+.section-icon,
+.tarif-note,
+.tarif-highlight,
+.personalization-note,
+.contact-icon,
+.footer-divider-line {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+

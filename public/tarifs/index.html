@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Tarifs des prestations de batch cooking à domicile proposées par Fée Maison."
+  >
+
+  <title>Tarifs — Fée Maison</title>
+
+  <link
+    rel="stylesheet"
+    href="./style.css"
+  >
+  <link
+  rel="stylesheet"
+  href="/theme/fee-maison-footer.css"
+  >
+</head>
+
+<body>
+  <!-- =======================================================
+       BOUTONS D’IMPRESSION
+       ======================================================= -->
+
+  <div
+    class="print-toolbar"
+    role="group"
+    aria-label="Options d’impression"
+  >
+    <button
+      id="printWithBackground"
+      class="print-button"
+      type="button"
+    >
+      Imprimer avec fond crème
+    </button>
+
+    <button
+      id="printWithoutBackground"
+      class="print-button print-button-light"
+      type="button"
+    >
+      Imprimer sans fond
+    </button>
+  </div>
+
+  
+
+  <!-- =======================================================
+       LES TROIS PAGES SERONT GÉNÉRÉES ICI
+       ======================================================= -->
+
+  <main
+    id="tarifsShell"
+    class="tarifs-shell"
+    aria-label="Tarifs Fée Maison"
+  ></main>
+
+  <!-- =======================================================
+       CHARGEMENT DU FICHIER DE CONFIGURATION
+       ======================================================= -->
+
+  <script src="./tarifConfig.js"></script>
+
+  <script src="/theme/fee-maison-footer.js"></script>
+
+  <script>
+    "use strict";
+
+    /* ========================================================
+       OUTILS GÉNÉRAUX
+       ======================================================== */
+
+    /**
+     * Retourne une chaîne de caractères sécurisée.
+     * Cela évite qu’un texte ajouté dans tarifConfig.js
+     * soit interprété comme du code HTML.
+     */
+    function escapeHtml(value) {
+      if (value === null || value === undefined) {
+        return "";
+      }
+
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    /**
+     * Vérifie qu’une valeur contient réellement du texte.
+     */
+    function hasText(value) {
+      return (
+        value !== null &&
+        value !== undefined &&
+        String(value).trim() !== ""
+      );
+    }
+
+    /**
+     * Retourne une classe CSS seulement lorsqu’elle existe.
+     */
+    function optionalClass(value) {
+      return hasText(value)
+        ? escapeHtml(String(value).trim())
+        : "";
+    }
+
+    /**
+     * Transforme un texte multiligne en HTML sécurisé.
+     */
+    function multilineText(value) {
+      return escapeHtml(value).replaceAll("\n", "<br>");
+    }
+
+    /* ========================================================
+       RÉCUPÉRATION DES ÉLÉMENTS PRINCIPAUX
+       ======================================================== */
+
+    const tarifsShell =
+      document.getElementById("tarifsShell");
+
+    const printWithBackgroundButton =
+      document.getElementById("printWithBackground");
+
+    const printWithoutBackgroundButton =
+      document.getElementById("printWithoutBackground");
+
+    /* ========================================================
+       VÉRIFICATION DE LA CONFIGURATION
+       ======================================================== */
+
+    if (
+      typeof tarifConfig === "undefined" ||
+      !tarifConfig ||
+      !Array.isArray(tarifConfig.pages)
+    ) {
+      tarifsShell.innerHTML = `
+        <section class="tarif-page">
+          <div class="page-content">
+            <header class="page-header">
+              <h1 class="page-title">
+                Configuration introuvable
+              </h1>
+
+              <p class="page-introduction">
+                Vérifie que le fichier
+                <strong>tarifConfig.js</strong>
+                est présent dans le même dossier que
+                <strong>index.html</strong>.
+              </p>
+            </header>
+          </div>
+        </section>
+      `;
+
+      throw new Error(
+        "Le fichier tarifConfig.js est absent ou incomplet."
+      );
+    }
+
+    const business =
+      tarifConfig.business || {};
+
+    const documentConfig =
+      tarifConfig.document || {};
+
+    const displayConfig =
+      tarifConfig.display || {};
+
+    const watermarkConfig =
+      tarifConfig.watermark || {};
+
+    const pages =
+  Array.isArray(tarifConfig.pages)
+    ? tarifConfig.pages
+    : [];
+     /* ========================================================
+       APPLICATION DES VARIABLES DU FILIGRANE
+       ======================================================== */
+
+    function applyWatermarkSettings() {
+      const root =
+        document.documentElement;
+
+      if (hasText(watermarkConfig.opacity)) {
+        root.style.setProperty(
+          "--watermark-opacity",
+          String(watermarkConfig.opacity)
+        );
+      }
+
+      if (hasText(watermarkConfig.width)) {
+        root.style.setProperty(
+          "--watermark-width",
+          String(watermarkConfig.width)
+        );
+      }
+
+      if (hasText(watermarkConfig.positionX)) {
+        root.style.setProperty(
+          "--watermark-position-x",
+          String(watermarkConfig.positionX)
+        );
+      }
+
+      if (hasText(watermarkConfig.positionY)) {
+        root.style.setProperty(
+          "--watermark-position-y",
+          String(watermarkConfig.positionY)
+        );
+      }
+    }
+
+    /* ========================================================
+       CRÉATION DU FILIGRANE
+       ======================================================== */
+
+    function createWatermark() {
+      const watermarkEnabled =
+        watermarkConfig.enabled !== false &&
+        displayConfig.showWatermark !== false;
+
+      if (
+        !watermarkEnabled ||
+        !hasText(business.watermarkUrl)
+      ) {
+        return "";
+      }
+
+      return `
+        <img
+          class="watermark"
+          src="${escapeHtml(business.watermarkUrl)}"
+          alt=""
+          aria-hidden="true"
+        >
+      `;
+    }
+
+    /* ========================================================
+       CRÉATION DE L’EN-TÊTE
+       ======================================================== */
+
+    function createPageHeader(page) {
+      const topLabel =
+        hasText(documentConfig.topLabel)
+          ? `
+            <div class="top-label-row">
+              <span
+                class="top-label-line"
+                aria-hidden="true"
+              ></span>
+
+              <p class="top-label">
+                ${escapeHtml(documentConfig.topLabel)}
+              </p>
+
+              <span
+                class="top-label-line"
+                aria-hidden="true"
+              ></span>
+            </div>
+          `
+          : "";
+
+      const title =
+        hasText(page.title)
+          ? escapeHtml(page.title)
+          : escapeHtml(documentConfig.mainTitle || "Tarifs");
+
+      const subtitle =
+        hasText(page.subtitle)
+          ? `
+            <p class="page-subtitle">
+              ${escapeHtml(page.subtitle)}
+            </p>
+          `
+          : "";
+
+      const introduction =
+        hasText(page.introduction)
+          ? `
+            <p class="page-introduction">
+              ${multilineText(page.introduction)}
+            </p>
+          `
+          : "";
+
+      const portionBadge =
+        hasText(page.portionBadge)
+          ? `
+            <div class="portion-badge">
+              ${escapeHtml(page.portionBadge)}
+            </div>
+          `
+          : "";
+
+      return `
+        <header class="page-header">
+          ${topLabel}
+
+          <h1 class="page-title">
+            ${title}
+          </h1>
+
+          ${subtitle}
+
+          <div
+            class="title-divider"
+            aria-hidden="true"
+          ></div>
+
+          ${introduction}
+
+          ${portionBadge}
+        </header>
+      `;
+    }
+
+    /* ========================================================
+       CRÉATION DU TITRE DE SECTION
+       ======================================================== */
+
+    function createSectionHeading(section) {
+      if (!section) {
+        return "";
+      }
+
+      const icon =
+        hasText(section.icon)
+          ? `
+            <div
+              class="section-icon"
+              aria-hidden="true"
+            >
+              ${escapeHtml(section.icon)}
+            </div>
+          `
+          : "";
+
+      const title =
+        hasText(section.title)
+          ? `
+            <h2 class="section-title">
+              ${escapeHtml(section.title)}
+            </h2>
+          `
+          : "";
+
+      const subtitle =
+        hasText(section.subtitle)
+          ? `
+            <p class="section-subtitle">
+              ${multilineText(section.subtitle)}
+            </p>
+          `
+          : "";
+
+      return `
+        <div class="section-heading">
+          ${icon}
+
+          <div class="section-heading-text">
+            ${title}
+            ${subtitle}
+
+            <div
+              class="section-rule"
+              aria-hidden="true"
+            ></div>
+          </div>
+        </div>
+      `;
+    }
+
+    /* ========================================================
+       CRÉATION D’UNE CARTE TARIFAIRE
+       ======================================================== */
+
+    function createTarifCard(card) {
+      if (!card) {
+        return "";
+      }
+
+      const color =
+        hasText(card.color)
+          ? escapeHtml(card.color)
+          : "gold";
+
+      const description =
+        hasText(card.description)
+          ? `
+            <p class="tarif-card-description">
+              ${multilineText(card.description)}
+            </p>
+          `
+          : "";
+
+      const price =
+        hasText(card.price)
+          ? `
+            <p class="tarif-price">
+              ${escapeHtml(card.price)}
+            </p>
+          `
+          : "";
+
+      const fullPrice =
+        hasText(card.fullPrice)
+          ? `
+            <p class="tarif-full-price">
+              ${escapeHtml(card.fullPrice)}
+            </p>
+          `
+          : "";
+
+      const taxNote =
+        hasText(card.taxNote)
+          ? `
+            <p class="tarif-tax-note">
+              ${multilineText(card.taxNote)}
+            </p>
+          `
+          : "";
+
+      return `
+        <article
+          class="tarif-card"
+          data-color="${color}"
+        >
+          <div class="tarif-card-header">
+            <h3 class="tarif-card-title">
+              ${escapeHtml(card.title || "")}
+            </h3>
+
+            ${description}
+          </div>
+
+          <div class="tarif-price-zone">
+            ${price}
+            ${fullPrice}
+            ${taxNote}
+          </div>
+        </article>
+      `;
+    }
+
+    /* ========================================================
+       CRÉATION DU CONTENU PRINCIPAL
+       ======================================================== */
+
+    function createTarifMain(page) {
+      const section =
+        page.section || {};
+
+      const cards =
+        Array.isArray(section.cards)
+          ? section.cards
+              .map(createTarifCard)
+              .join("")
+          : "";
+
+      const note =
+        hasText(page.note)
+          ? `
+            <div class="tarif-note">
+              ${multilineText(page.note)}
+            </div>
+          `
+          : "";
+
+      const highlight =
+        hasText(page.highlight)
+          ? `
+            <div class="tarif-highlight">
+              ${multilineText(page.highlight)}
+            </div>
+          `
+          : "";
+
+      return `
+        <main class="tarif-main">
+          <section class="tarif-section">
+            ${createSectionHeading(section)}
+
+            <div class="tarif-cards">
+              ${cards}
+            </div>
+
+            ${note}
+            ${highlight}
+          </section>
+        </main>
+      `;
+    }
+
+    /* ========================================================
+       CRÉATION DU PIED DE PAGE
+       ======================================================== */
+
+    function createFooterBrand() {
+      const showLogo =
+        displayConfig.showLogoInFooter !== false &&
+        hasText(business.logoUrl);
+
+      const logo =
+        showLogo
+          ? `
+            <img
+              class="footer-logo"
+              src="${escapeHtml(business.logoUrl)}"
+              alt=""
+              aria-hidden="true"
+            >
+          `
+          : "";
+
+      return `
+        <div class="footer-brand">
+          ${logo}
+
+          <div class="footer-brand-copy">
+            <p class="footer-brand-name">
+              ${escapeHtml(business.name || "Fée Maison")}
+            </p>
+
+            <p class="footer-brand-activity">
+              ${escapeHtml(
+                business.activity ||
+                "Cuisinière à domicile"
+              )}
+            </p>
+          </div>
+        </div>
+      `;
+    }
+
+    function createContactList() {
+      const contacts = [];
+
+      if (hasText(business.phone)) {
+        const phoneLink =
+          String(business.phone).replace(/[^\d+]/g, "");
+
+        contacts.push(`
+          <a
+            class="contact-item"
+            href="tel:${escapeHtml(phoneLink)}"
+          >
+            <span
+  class="contact-icon"
+  aria-hidden="true"
+>
+  <svg
+    viewBox="0 0 24 24"
+    width="11"
+    height="11"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M7.2 3.5 9.6 7.7 7.9 9.4c1.2 2.5 3.2 4.5 5.7 5.7l1.7-1.7 4.2 2.4c.5.3.7.8.6 1.3l-.5 2.4c-.1.6-.7 1-1.3 1C10.2 20.5 3.5 13.8 3.5 5.7c0-.6.4-1.2 1-1.3l2.4-.5c.5-.1 1 .1 1.3.6Z"
+      stroke="currentColor"
+      stroke-width="1.8"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+</span>
+
+            <span>
+              ${escapeHtml(business.phone)}
+            </span>
+          </a>
+        `);
+      }
+
+      if (hasText(business.email)) {
+        contacts.push(`
+          <a
+            class="contact-item"
+            href="mailto:${escapeHtml(business.email)}"
+          >
+            <span
+              class="contact-icon"
+              aria-hidden="true"
+            >
+              @
+            </span>
+
+            <span>
+              ${escapeHtml(business.email)}
+            </span>
+          </a>
+        `);
+      }
+
+      if (hasText(business.website)) {
+        let websiteUrl =
+          String(business.website).trim();
+
+        if (
+          !websiteUrl.startsWith("http://") &&
+          !websiteUrl.startsWith("https://")
+        ) {
+          websiteUrl =
+            `https://${websiteUrl}`;
+        }
+
+        contacts.push(`
+          <a
+            class="contact-item"
+            href="${escapeHtml(websiteUrl)}"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span
+              class="contact-icon"
+              aria-hidden="true"
+            >
+              W
+            </span>
+
+            <span>
+              ${escapeHtml(business.website)}
+            </span>
+          </a>
+        `);
+      }
+
+      if (contacts.length === 0) {
+        return "";
+      }
+
+      return `
+        <div class="contact-list">
+          ${contacts.join("")}
+        </div>
+      `;
+    }
+
+   function createFooter(page = {}) {
+  if (typeof window.createFeeMaisonFooter !== "function") {
+    console.error(
+      "Le fichier /theme/fee-maison-footer.js n’est pas chargé."
+    );
+
+    return "";
+  }
+
+  return window.createFeeMaisonFooter({
+    business,
+
+    documentConfig: {
+      ...documentConfig,
+
+      personalizationText:
+        page.personalizationText ||
+        documentConfig.personalizationText,
+
+      footerNote:
+        page.footerNote ||
+        documentConfig.footerNote
+    },
+
+    displayConfig
+  });
+}
+
+    /* ========================================================
+       CRÉATION D’UNE PAGE COMPLÈTE
+       ======================================================== */
+
+    function createTarifPage(page, pageIndex) {
+      const pageClass =
+        optionalClass(page.pageClass);
+
+      const pageId =
+        hasText(page.id)
+          ? escapeHtml(page.id)
+          : `tarif-page-${pageIndex + 1}`;
+
+      return `
+        <section
+          class="tarif-page ${pageClass}"
+          id="${pageId}"
+          aria-label="${escapeHtml(
+            page.subtitle ||
+            `Page tarifaire ${pageIndex + 1}`
+          )}"
+        >
+          ${createWatermark()}
+
+          <div class="page-content">
+            ${createPageHeader(page)}
+            ${createTarifMain(page)}
+            ${createFooter(page)}
+          </div>
+        </section>
+      `;
+    }
+
+    /* ========================================================
+       AFFICHAGE DES TROIS PAGES
+       ======================================================== */
+
+    function renderTarifPages() {
+      if (pages.length === 0) {
+        tarifsShell.innerHTML = `
+          <section class="tarif-page">
+            <div class="page-content">
+              <header class="page-header">
+                <h1 class="page-title">
+                  Aucun tarif
+                </h1>
+
+                <p class="page-introduction">
+                  Ajoute au moins une page dans le tableau
+                  <strong>pages</strong> de
+                  <strong>tarifConfig.js</strong>.
+                </p>
+              </header>
+            </div>
+          </section>
+        `;
+
+        return;
+      }
+
+      tarifsShell.innerHTML =
+        pages
+          .map(createTarifPage)
+          .join("");
+    }
+
+    /* ========================================================
+       IMPRESSION
+       ======================================================== */
+
+    function printWithBackground() {
+      document.body.classList.remove(
+        "print-without-background"
+      );
+
+      requestAnimationFrame(() => {
+        window.print();
+      });
+    }
+
+    function printWithoutBackground() {
+      document.body.classList.add(
+        "print-without-background"
+      );
+
+      requestAnimationFrame(() => {
+        window.print();
+      });
+    }
+
+    printWithBackgroundButton.addEventListener(
+      "click",
+      printWithBackground
+    );
+
+    printWithoutBackgroundButton.addEventListener(
+      "click",
+      printWithoutBackground
+    );
+
+    window.addEventListener("afterprint", () => {
+      document.body.classList.remove(
+        "print-without-background"
+      );
+    });
+
+    /* ========================================================
+       LANCEMENT
+       ======================================================== */
+
+    applyWatermarkSettings();
+    renderTarifPages();
+  </script>
+</body>
+</html>
