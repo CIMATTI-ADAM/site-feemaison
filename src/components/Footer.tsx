@@ -18,6 +18,7 @@ export function Footer() {
     { icon: Facebook, url: socialMedia.facebook, label: 'Facebook' },
     { icon: Instagram, url: socialMedia.instagram, label: 'Instagram' },
     { icon: Linkedin, url: socialMedia.linkedin, label: 'LinkedIn' },
+    { icon: MapPin, url: socialMedia.google, label: 'Google Maps' }
   ].filter((s) => s.url);
 
   return (

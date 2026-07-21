@@ -166,7 +166,7 @@ window.addEventListener("afterprint", () => {
 
         return `
           <section
-            class="category"
+            class="category category-${category.column || "left"}"
             data-id="${escapeHtml(category.id)}"
           >
             <header class="category-header">

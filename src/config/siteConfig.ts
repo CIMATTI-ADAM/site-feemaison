@@ -36,11 +36,11 @@ export const siteConfig = {
     publicationDirector: "Catherine Cimatti-Adam", // Directrice de publication
     // Hébergeur du site
     host: {
-      name: "Hostinger",
-      address: "À compléter",
-      city: "À compléter",
-      country: "À compléter",
-      website: "À compléter",
+      name: "Hostinger	International	Ltd.",
+      address: "61	Lordou	Vironos	Street",
+      city: "Larnaca	6023",
+      country: "Cyprus",
+      website: "https://www.hostinger.com/fr",
     },
     // Éditeur du site
     editor: {
@@ -53,21 +53,24 @@ export const siteConfig = {
   // --- MÉDIATEUR DE LA CONSOMMATION ---
   // IMPORTANT : Renseignez ces informations avant la mise en ligne du site.
   mediateurConsommation: {
-    nom: "À compléter",
-    siteInternet: "À compléter",
-    adressePostale: "À compléter",
-    adresseEmail: "À compléter", // Laisser vide si non applicable
+    nom: "SOCIETE MEDIATION PROFESSIONNELLE",
+    siteInternet: "https://www.mediateur-consommation-smp.fr/",
+    adressePostale: "Société de la Médiation Professionnelle Alteritae 5 rue Salvaing 12000 Rodez ",
+    adresseEmail: "saisine@mediateur-consommation-smp.fr",
     referenceAgrement: "À compléter",
-    conditionsSaisine:
-      "À compléter — Indiquez ici les conditions permettant au consommateur de saisir le médiateur, notamment le délai après réclamation écrite adressée à Fée Maison et les situations éligibles à la médiation.",
+    conditionsSaisine: "Dans sa saisine, envoyée obligatoirement par écrit et en français, le consommateur indique les informations suivantes : Ses coordonnées complètes (nom et prénom) / Ses informations de contact : téléphone et/ou adresse mail et postale / La nature de la demande / L’exposé et la description de son litige / Toutes les pièces et documents factuels utiles à la compréhension et à l’analyse du dossier / Les échanges intervenus avec l’entreprise attestant d’une tentative de résolution du litige directement auprès du professionnel concerné / Ses attentes concernant l’action du médiateur et la solution qu’il envisage ",
+
+
+      
   },
 
   // --- RÉSEAUX SOCIAUX ---
   socialMedia: {
-    facebook: "", // URL complète ou laisser vide
-    instagram: "", // URL complète ou laisser vide
-    linkedin: "", // URL complète ou laisser vide
-  },
+    facebook: "https://www.facebook.com/profile.php?id=61587003001913", 
+    instagram: "https://www.instagram.com/feemaison.lannion/", 
+    linkedin: "", 
+    google: "https://maps.app.goo.gl/zKo83fEAecc1Fbjn9",
+ },
 
   // --- FORMULAIRE DE CONTACT ---
   contactFormRecipient: "feemaison.lannion@gmail.com",

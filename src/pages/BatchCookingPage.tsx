@@ -10,11 +10,11 @@ const benefits = [
   { icon: Heart, text: 'Réduire la charge mentale' },
   { icon: UtensilsCrossed, text: 'Manger des repas faits maison' },
   { icon: CalendarDays, text: 'Varier les menus' },
-  { icon: Sparkles, text: 'Mieux organiser la semaine' },
-  { icon: Recycle, text: 'Limiter le gaspillage' },
   { icon: Smile, text: 'Adapter les recettes aux goûts de la famille' },
   { icon: ShieldCheck, text: 'Prendre en compte allergies, intolérances ou préférences' },
   { icon: Coffee, text: 'Disposer de repas prêts à réchauffer ou à finaliser' },
+  { icon: Recycle, text: 'Limiter le gaspillage' },
+  { icon: Sparkles, text: 'Mieux organiser la semaine' },
 ];
 
 const steps = [
@@ -26,9 +26,9 @@ const steps = [
 ];
 
 const targetAudience = [
-  'Familles', 'Parents', 'Jeunes parents', 'Actifs ayant peu de temps',
-  'Seniors', 'Personnes souhaitant retrouver une alimentation plus régulière',
-  'Personnes en convalescence', 'Personnes souhaitant alléger leur organisation quotidienne',
+  'Jeunes parents', 'Actifs ayant peu de temps', 'Séniors', 'Familles dont les parents veulent une alimentation saine et variée', 
+  'Personnes souhaitant retrouver une alimentation plus régulière',
+  'Personnes en convalescence', 'Personnes souhaitant alléger leur organisation quotidienne', 
 ];
 
 export function BatchCookingPage() {
@@ -94,7 +94,7 @@ export function BatchCookingPage() {
                 <span className="flex-shrink-0 w-10 h-10 rounded-full bg-terracotta-600 text-white flex items-center justify-center font-serif font-bold">
                   {i + 1}
                 </span>
-                <p className="text-brown-700 text-base md:text-lg pt-1.5">{step}</p>
+                <p className="text-brown-700 text-base md:text-lg pt-5.5">{step}</p>
               </div>
             ))}
           </div>
@@ -125,17 +125,46 @@ export function BatchCookingPage() {
           <div className="text-center mb-12">
             <h2 className="section-title mb-4">Pour qui ?</h2>
             <div className="divider" />
-            <p className="section-subtitle">Le batchcooking à domicile s'adresse à toutes les personnes qui souhaitent profiter d'une cuisine maison sans en porter la charge.</p>
+            <p className="section-subtitle">Le batchcooking à domicile s'adresse prioritairement aux personnes dépendantes ou en convalescence, mais aussi à celles et ceux qui souhaitent profiter d'une cuisine maison sans en porter la charge.</p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {targetAudience.map((target) => (
-              <div key={target} className="bg-white p-4 rounded-xl text-center shadow-sm hover:shadow-md transition-shadow">
-                <Baby size={24} className="mx-autotext-sage-500 mb-2" />
-                <span className="text-brown-700 text-sm font-medium">{target}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+          {targetAudience.map((target, index) => {
+            const icons = [
+              Baby,
+              Clock,
+              Heart,
+              UtensilsCrossed,
+              CalendarDays,
+              Sparkles, 
+              Coffee,
+              Smile, 
+              ShieldCheck,
+              Recycle,
+    ];
+
+    const Icon = icons[index % icons.length];
+
+    return (
+      <div
+        key={target}
+        className="bg-white p-4 rounded-xl text-center shadow-sm hover:shadow-md transition-shadow"
+        >
+        <Icon
+          size={40}
+          className="mx-auto text-sage-500 mb-2"
+        />
+
+        <span className="text-brown-700 text-sm font-medium">
+          {target}
+        </span>
+      </div>
+    );
+  })}
+</div>
+          
+         
+          
+      </div>
       </section>
 
       {/* Crédit d'impôt */}

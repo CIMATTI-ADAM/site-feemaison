@@ -39,6 +39,10 @@ export function CreditImpot() {
                     Pour vérifier si votre situation remplit les conditions requises, consultez les
                     informations officielles ou contactez Fée Maison.
                   </p>
+                  <p className="text-sm text-brown-600 leading-relaxed mb-4">
+                    Sous réserve d'éligibilité, ce crédit d'impôt vous sera versé lors de la prochaines 
+                    déclaration d'impôt, ou sera avancé grâce à l'avance immédiate dont Fée Maison peut vous faire profiter.
+                  </p>
                   <a
                     href={siteConfig.creditImpot.lienInfos}
                     target="_blank"

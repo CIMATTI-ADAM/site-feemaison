@@ -81,7 +81,7 @@ window.menuConfig = {
 
     menuTitle: "Carte des plats",
 
-    season: "Été 2026",
+    season: "Juillet & Août 2026",
 
     introduction:
       "Des repas faits maison, préparés chez vous avec des produits bruts, locaux et de saison, adaptés à vos envies et à vos habitudes alimentaires",
@@ -183,7 +183,7 @@ window.menuConfig = {
 
     bestseller: {
       label: "Best seller",
-      symbol: " ",  /*  symbol: "⭐",  */
+      symbol: " ", /* symbol: "⭐",  */
       cssClass: "bestseller",
     },
   },
@@ -225,14 +225,13 @@ window.menuConfig = {
           name: "Taboulé",
           tags: ["bestseller", "cold", "veggie"],
         },
-
         {
-          name: "Courgettes farcies au quinoa, citron et fromage de chèvre",
-          tags: ["bestseller", "veggie"],
+          name: "Salade de melon, fenouil mariné au vinaigre de cidre, olives noires et câpres",
+          tags: ["bestseller", "cold", "veggie"],
         },
 
         {
-          name: "Parmiggiana d'aubergines",
+          name: "Parmiggiana d'aubergines, accompagnée de tagliatelles",
           tags: ["bestseller", "veggie"],
         },
 
@@ -242,10 +241,10 @@ window.menuConfig = {
         },
 
         {
-          name:
-            "Linguine carbonara aux courgettes, à ma façon",
-          tags: ["bestseller", "veggie"],
+          name: "Salade de tomates, concombre, pastèque, olives noires et fêta",
+          tags: ["bestseller", "cold", "veggie"],
         },
+        
       ],
     },
 
@@ -267,7 +266,7 @@ window.menuConfig = {
 
         {
           name:
-            "Poisson blanc vapeur, selon arrivage, et tagliatelles de courgettes",
+            "Poisson blanc vapeur, selon arrivage, tagliatelles de courgettes et quinoa",
           tags: [],
         },
 
@@ -282,7 +281,7 @@ window.menuConfig = {
         },
 
         {
-          name: "Tomates farcies au veau et pâtes",
+          name: "Tomates farcies au veau et tagliatelles",
           tags: [],
         },
       ],
@@ -291,7 +290,7 @@ window.menuConfig = {
     {
       id: "quiches",
 
-      title: "Quiches salées et petite salade",
+      title: "Quiches avec salade",
 
       icon: "◒",
 
@@ -377,7 +376,7 @@ window.menuConfig = {
 
       icon: "✦",
 
-      column: "left",
+      column: "right",
 
       recipes: [
         {
@@ -399,8 +398,39 @@ window.menuConfig = {
           name: "Clafoutis aux abricots",
           tags: [],
         },
+
+        {
+          name: "Clafoutis aux abricots",
+          tags: [],
+        },
+
+        {
+          name: "Clafoutis aux abricots",
+          tags: [],
+        },
       ],
     },
+
+
+    {
+      id: "categorie-suppl",
+
+      title: "En plus...",
+
+      icon: "✦",
+
+      column: "left",
+
+      recipes: [
+        {
+          name: "bla bla",
+          tags: [],
+        },
+
+        
+      ],
+    },
+
   ],
 
   /**
@@ -420,9 +450,9 @@ window.menuConfig = {
       "veggie",
       "cold",
       "spicy",
-     /* "freezer",
-      "bestseller",
-      */
+     /* "freezer",*/
+     /* "bestseller", */
+      
     ],
   },
 

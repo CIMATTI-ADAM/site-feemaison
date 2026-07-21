@@ -225,6 +225,7 @@ img {
   align-items: center;
   justify-content: center;
   gap: 4mm;
+  /* espacement entre la légende et le menu : */
   margin-top: 5mm;
 }
 
@@ -279,11 +280,13 @@ img {
   grid-template-areas:
     "best meat"
     "quiche gratin"
-    "dessert legend";
-  column-gap: 11mm;
-  row-gap: 4mm;
+    "suppl dessert"
+    "legend legend";
+  column-gap: 8mm;
+    /* Espacement entre les catégories : */
+  row-gap: 5mm;
     /* Espacement avec le haut de page : */
-  margin-top: 1mm;
+  margin-top: 0mm;
 }
 
 .category {
@@ -296,6 +299,7 @@ img {
 .category[data-id="quiches"] { grid-area: quiche; }
 .category[data-id="gratins-lasagnes"] { grid-area: gratin; }
 .category[data-id="desserts"] { grid-area: dessert; }
+.category[data-id="categrorie-suppl"] { grid-area: suppl; }
 
 .category-header {
   display: grid;
@@ -343,19 +347,27 @@ img {
   background: linear-gradient(90deg, var(--gold), rgba(201, 157, 93, 0.12));
 }
 
+.category-left {
+  grid-column: 1;
+}
+
+.category-right {
+  grid-column: 2;
+}
+
 .recipe-list {
   margin: 0;
-  padding: 0 0 0 4.2mm;
+  padding: 0 0 0 0.2mm;
 }
 
 /* Ajustement des différentes recettes dans la page */
 .recipe-item {
-  margin: 0 0 1.8mm;
-  padding-left: 0.5mm;
+  margin: 0 0 0.8mm;
+  padding-left: 0mm;
   color: var(--text);
   font-size: 10pt;
   font-weight: 500;
-  line-height: 1.20;
+  line-height: 1.0;
 }
 
 .recipe-item::marker {
@@ -371,9 +383,12 @@ img {
   display: inline-flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 1.2mm;
-  margin-left: 1.5mm;
+  /* rapprochement des tags entre eux : */
+  gap: 0.1mm;
+  /* rapprochement des tags avec le texte : */
+  margin-left: 0.1mm;
   vertical-align: baseline;
+  white-space: nowrap;
 }
 
 .inline-tag {
@@ -384,7 +399,8 @@ img {
   height: 4.6mm;
   border-radius: 999px;
   font-family: "Montserrat", Arial, sans-serif;
-  font-size: 9pt;
+  /* Taille des pictogrammes : */
+  font-size: 15pt;
   font-weight: 700;
   line-height: 1;
 }
@@ -398,14 +414,17 @@ img {
 .legend-card {
   grid-area: legend;
   align-self: end;
-  padding: 4.5mm 4mm 4mm;
+  padding: 0.5mm 4mm 0.5mm;
   border: 1px solid rgba(201, 157, 93, 0.52);
   border-radius: 4mm;
   background: rgba(255, 255, 255, 0.73);
   box-shadow: 0 4px 14px rgba(62, 46, 42, 0.045);
   break-inside: avoid;
+  /* Remonte uniquement la légende */
+  transform: translateY(-13mm);
 }
 
+/* nbre de colonnes dans la légende : */
 .legend-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -883,5 +902,5 @@ img {
 #menu-page .categories-grid > :last-child {
   position: relative;
 
-  top: -2mm;
+  top: 10mm;
 }
