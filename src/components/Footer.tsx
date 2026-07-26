@@ -1,4 +1,4 @@
-import { UtensilsCrossed, Mail, Phone, MapPin, Facebook, Instagram, Linkedin, ArrowRight } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Instagram, Linkedin, ArrowRight } from 'lucide-react';
 import { Link, type RoutePath } from '../lib/router';
 import { siteConfig } from '../config/siteConfig';
 
@@ -34,7 +34,7 @@ export function Footer() {
                 className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover transition-transform hover:scale-125"
                 />
                 
-              <span className="font-serif text-xl text-cream-50 font-semibold">
+              <span className="font-sans text-xl text-cream-50 font-semibold">
                 {siteConfig.businessName}
               </span>
             </div>

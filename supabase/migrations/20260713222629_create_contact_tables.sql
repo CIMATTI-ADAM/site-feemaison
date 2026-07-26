@@ -8,7 +8,7 @@
   - prenom (text, nullable)
   - telephone (text, not null)
   - email (text, not null)
-  - type_demande (text, not null) — "Batchcooking" or "Évènementiel"
+  - type_demande (text, not null) — "Batchcooking" or "Cours" or "Évènementiel"
   - sous_type (text, nullable) — "Ponctuel" or "Sur plusieurs jours"
   - date_souhaitee (text, not null)
   - nombre_personnes (integer, not null)

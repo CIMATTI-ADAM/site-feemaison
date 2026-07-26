@@ -48,10 +48,11 @@ export function MediatorPage() {
           {mediateurConsommation.adresseEmail && mediateurConsommation.adresseEmail !== "À compléter" && (
             <div><strong>Adresse e-mail : </strong>{mediateurConsommation.adresseEmail}</div>
           )}
-          <div><strong>Référence / numéro d'agrément : </strong>{mediateurConsommation.referenceAgrement}</div>
+         
         </div>
       </section>
 
+    
       <section>
         <h2>Conditions de saisine</h2>
         <p>{mediateurConsommation.conditionsSaisine}</p>
@@ -68,3 +69,11 @@ export function MediatorPage() {
     </LegalLayout>
   );
 }
+
+
+  /* A AJOUTER dans 
+  <section>
+        <h2>Coordonnées du médiateur</h2>
+  AVANT /div de la fin :      
+    <div><strong>Référence / numéro d'agrément : </strong>{mediateurConsommation.referenceAgrement}</div>
+  */

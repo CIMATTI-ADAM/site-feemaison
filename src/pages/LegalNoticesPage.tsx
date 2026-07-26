@@ -85,7 +85,6 @@ export function LegalNoticesPage() {
           {mediateurConsommation.adresseEmail && mediateurConsommation.adresseEmail !== "À compléter" && (
             <div><strong>Adresse e-mail : </strong>{mediateurConsommation.adresseEmail}</div>
           )}
-          <div><strong>Référence / numéro d'agrément : </strong>{mediateurConsommation.referenceAgrement}</div>
         </div>
         <p className="mt-3">
           Pour plus d'informations, consultez la page dédiée :{' '}
@@ -95,3 +94,8 @@ export function LegalNoticesPage() {
     </LegalLayout>
   );
 }
+
+
+/* A AJOUTER...
+<div><strong>Référence / numéro d'agrément : </strong>{mediateurConsommation.referenceAgrement}</div>
+          */

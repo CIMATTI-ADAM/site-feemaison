@@ -51,7 +51,7 @@ export const siteConfig = {
   },
 
   // --- MÉDIATEUR DE LA CONSOMMATION ---
-  // IMPORTANT : Renseignez ces informations avant la mise en ligne du site.
+  // 
   mediateurConsommation: {
     nom: "SOCIETE MEDIATION PROFESSIONNELLE",
     siteInternet: "https://www.mediateur-consommation-smp.fr/",
@@ -99,13 +99,13 @@ export const siteConfig = {
     defaultDescription:
       "Catherine, cuisinière à domicile à Lannion. Batchcooking à domicile, repas sur mesure pour évènements, séjours bien-être, séminaires. Trégor, Côtes d'Armor et toute la France.",
     keywords:
-      "cuisinière à domicile, batchcooking à domicile, préparation repas domicile, repas maison, fait maison, produits frais locaux, repas sur mesure, cuisine séjour yoga, cuisinière séminaire, buffet anniversaire, cuisine évènementielle, repas stage photo, crédit impôt préparation repas, cuisinière Lannion, Trégor, Côtes d'Armor",
+      "cuisinière à domicile, batchcooking à domicile, préparation repas domicile, repas maison, fait maison, produits frais locaux, repas sur mesure, cuisine séjour yoga, cuisinière séminaire, buffet anniversaire, cuisine évènementielle, repas stage photo, crédit impôt préparation repas, cuisinière Lannion, Trégor, Côtes d'Armor, Bretagne, cours de cuisine, bien-manger",
     ogImage: "/images/photosCC/Event-buffet_03.jpeg",
   },
 
   // --- AVERTISSEMENT JURIDIQUE (affiché dans les pages légales) ---
   legalWarning:
-    "Les Conditions générales de vente doivent être relues et adaptées à l'activité réelle de Fée Maison par une personne compétente avant la mise en ligne du site.",
+    "Les Conditions générales de vente sont acceptées lors de la signature du devis.",
 };
 
 export type SiteConfig = typeof siteConfig;

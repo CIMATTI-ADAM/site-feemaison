@@ -145,7 +145,7 @@ export function ContactForm() {
   if (status === 'success') {
     return (
       <div className="pt-20 md:pt-24">
-        <section className="py-20 md:py-32 bg-cream-50">
+        <section className="py-20 md:py-32 bg-beige-50">
           <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-sage-100 text-sage-600 mb-6">
               <CheckCircle2 size={40} />
@@ -177,7 +177,7 @@ export function ContactForm() {
             <h1 className="font-serif text-4xl md:text-5xl text-brown-800 mb-4">Contactez Fée Maison</h1>
             <div className="divider" />
             <p className="section-subtitle">
-              Décrivez votre projet : Catherine vous répond pour en discuter.
+              Décrivez votre projet, Catherine vous répondra pour en discuter.
             </p>
           </div>
 
@@ -282,6 +282,7 @@ export function ContactForm() {
               >
                 <option value="">Sélectionnez un type de demande</option>
                 <option value="Batchcooking">Batchcooking</option>
+                <option value="Cours de cuisine">Cours de cuisine</option>
                 <option value="Évènementiel">Évènementiel</option>
               </select>
               {errors.typeDemande && <p className="mt-1 text-sm text-terracotta-600">{errors.typeDemande}</p>}

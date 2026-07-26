@@ -16,7 +16,7 @@ export function PrivacyPage() {
       <section>
         <h2>Identité du responsable du traitement</h2>
         <p>
-          Le responsable du traitement des données personnelles est {businessName}, représenté par{' '}
+          Le responsable du traitement des données personnelles est {businessName}, représentée par{' '}
           {professionalName}. Pour toute question relative à la protection de vos données, vous
           pouvez contacter : {rgpd.droitsContact}.
         </p>
@@ -41,7 +41,7 @@ export function PrivacyPage() {
           <li>Nom et prénom</li>
           <li>Numéro de téléphone</li>
           <li>Adresse e-mail</li>
-          <li>Type de demande (batchcooking ou évènementiel)</li>
+          <li>Type de demande (batchcooking, cours de cuisine ou évènementiel)</li>
           <li>Date souhaitée, nombre de personnes, lieu</li>
           <li>Message libre</li>
         </ul>
