@@ -27,13 +27,19 @@ export const heroImages: Photo[] = [
 
 // Page À propos — portrait et action de Catherine
 export const aboutImages: Photo[] = [
-  {
-    src: '/images/photosCC/CC-preparations_04.jpeg',
+ {
+    src: '/images/photosCC/CC-portrait_01.jpeg',
+    alt: 'Catherine en cuisine, concentrée sur ses préparations',
+    category: 'portrait',
+  },
+   {
+    src: '/images/photosCC/CC-preparations_08.jpeg',
     alt: 'Catherine préparant des plats maison avec soin',
     category: 'preparation',
   },
+   
   {
-    src: '/images/photosCC/CC-preparations_05.jpeg',
+    src: '/images/photosCC/CC-preparations_08.jpeg',
     alt: 'Catherine en cuisine, concentrée sur ses préparations',
     category: 'preparation',
   },
@@ -47,11 +53,6 @@ export const batchcookingImages: Photo[] = [
     category: 'plats',
   },
   {
-    src: '/images/photosCC/batch-frigo_01.jpeg',
-    alt: 'Réfrigérateur rangé avec les repas de la semaine préparés par le batchcooking à domicile',
-    category: 'frigo',
-  },
-  {
     src: '/images/photosCC/batch-courses_01.jpeg',
     alt: 'Courses de produits frais pour la préparation des repas à domicile',
     category: 'courses',
@@ -60,6 +61,16 @@ export const batchcookingImages: Photo[] = [
     src: '/images/photosCC/batch-preparations_03.jpeg',
     alt: 'Préparation culinaire à domicile avec des produits frais et de saison',
     category: 'preparation',
+  },
+  {
+    src: '/images/photosCC/batch-plats_prepares_01.jpeg',
+    alt: 'Plats préparés à domicile et étiquetés pour la semaine, batchcooking Fée Maison',
+    category: 'plats',
+  },
+  {
+    src: '/images/photosCC/batch-frigo_01.jpeg',
+    alt: 'Réfrigérateur rangé avec les repas de la semaine préparés par le batchcooking à domicile',
+    category: 'frigo',
   },
 ];
 
@@ -75,16 +86,8 @@ export const eventImages: Photo[] = [
     alt: 'Repas de groupe convivial, cuisine sur mesure pour un évènement privé',
     category: 'groupe',
   },
-  {
-    src: '/images/photosCC/Event-mignardises_01.jpeg',
-    alt: 'Mignardises maison pour un évènement',
-    category: 'buffet',
-  },
-  {
-    src: '/images/photosCC/CC-service_02.jpeg',
-    alt: 'Service de table soigné pour un évènement, plats dressés par Fée Maison',
-    category: 'service',
-  },
+ 
+  
 ];
 
 // Section "Deux façons de vous accompagner" — une image par carte
@@ -106,9 +109,14 @@ export const sejourImages: Photo[] = [
     alt: 'Repas convivial lors d\'un séjour bien-être, cuisine équilibrée et maison',
     category: 'groupe',
   },
+   {
+    src: '/images/photosCC/Event-buffet_03.jpeg',
+    alt: 'Un buffet haut en couleurs et entièrement fait maison',
+    category: 'groupe',
+  },
   {
-    src: '/images/photosCC/CC-service_01.jpeg',
-    alt: 'Table dressée avec soin pour un séjour, service attentif de Fée Maison',
+    src: '/images/photosCC/Event-buffet_05.jpeg',
+    alt: 'Un buffet haut en couleurs et entièrement fait maison',
     category: 'service',
   },
 ];
@@ -146,6 +154,15 @@ export const galleryImages: Photo[] = [
     category: 'cheffe_privee',
   },
   {
+    src: '/images/photosCC/batch-plats_prepares_01.jpeg',
+    alt: 'Plats préparés à l\'avance et conservés pour la semaine, batchcooking à domicile',
+    category: 'plats',
+  },{
+    src: '/images/photosCC/batch-plats_prepares_02.jpeg',
+    alt: 'Plats préparés à l\'avance et conservés pour la semaine, batchcooking à domicile',
+    category: 'plats',
+  },
+  {
     src: '/images/photosCC/batch-plats_prepares_03.jpeg',
     alt: 'Plats préparés à l\'avance et conservés pour la semaine, batchcooking à domicile',
     category: 'plats',
@@ -154,6 +171,16 @@ export const galleryImages: Photo[] = [
     src: '/images/photosCC/batch-plats_prepares_04.jpeg',
     alt: 'Plats variés préparés en batchcooking, repas maison pour toute la famille',
     category: 'plats',
+  },
+  {
+    src: '/images/photosCC/batch-frigo_01.jpeg',
+    alt: 'Des plats préparés rangés dans votre frigo, des repas maison en toute simplicité',
+    category: 'plats',
+  },
+  {
+    src: '/images/photosCC/batch-preparations_03.jpeg',
+    alt: 'Préparation de plusieurs plats simultanément à domicile',
+    category: 'preparation',
   },
   {
     src: '/images/photosCC/batch-preparations_04.jpeg',
@@ -186,18 +213,38 @@ export const galleryImages: Photo[] = [
     category: 'preparation',
   },
   {
-    src: '/images/photosCC/batch-_courses_02.jpeg',
+    src: '/images/photosCC/batch-courses_01.jpeg',
     alt: 'Sélection de produits frais pour la préparation des repas',
     category: 'courses',
   },
   {
-    src: '/images/photosCC/CC-preparations_02.jpeg',
+    src: '/images/photosCC/batch-courses_02.jpeg',
+    alt: 'Sélection de produits frais pour la préparation des repas',
+    category: 'courses',
+  },
+  {
+    src: '/images/photosCC/CC-preparations_01.jpeg',
     alt: 'Catherine en pleine préparation culinaire, gestes précis et soin',
     category: 'preparation',
   },
   {
+    src: '/images/photosCC/CC-preparations_02.jpeg',
+    alt: 'Catherine en pleine préparation culinaire, gestes précis et soin',
+    category: 'portrait',
+  },
+  {
     src: '/images/photosCC/CC-preparations_03.jpeg',
     alt: 'Préparation de plats maison, produits frais et locaux',
+    category: 'preparation',
+  },
+  {
+    src: '/images/photosCC/CC-preparations_04.jpeg',
+    alt: 'Coulisses de la cuisine de Fée Maison, préparation attentive',
+    category: 'preparation',
+  },
+  {
+    src: '/images/photosCC/CC-preparations_05.jpeg',
+    alt: 'Coulisses de la cuisine de Fée Maison, préparation attentive',
     category: 'preparation',
   },
   {
@@ -213,8 +260,10 @@ export const galleryImages: Photo[] = [
   {
     src: '/images/photosCC/CC-preparations_08.jpeg',
     alt: 'Préparation soigneuse de plats maison à domicile',
-    category: 'preparation',
+    category: 'portrait',
   },
+  
+  
   {
     src: '/images/photosCC/CC-preparations_10.jpeg',
     alt: 'Plats en préparation, cuisine familiale et généreuse',
@@ -223,10 +272,30 @@ export const galleryImages: Photo[] = [
   {
     src: '/images/photosCC/CC-preparations_11.jpeg',
     alt: 'Gestes de cuisinière à domicile, attention portée aux détails',
-    category: 'preparation',
+    category: 'portrait',
+  },
+  {
+    src: '/images/photosCC/CC-service_02.jpeg',
+    alt: 'Service tout en gaité et convivialité pour un évènement, cuisine maison de Fée Maison',
+    category: 'service',
+  },
+  {
+    src: '/images/photosCC/Event-buffet_01.jpeg',
+    alt: 'Buffet coloré et varié pour un évènement, cuisine maison',
+    category: 'buffet',
   },
   {
     src: '/images/photosCC/Event-buffet_02.jpeg',
+    alt: 'Buffet coloré et varié pour un évènement, cuisine maison',
+    category: 'buffet',
+  },
+  {
+    src: '/images/photosCC/Event-buffet_03.jpeg',
+    alt: 'Buffet coloré et varié pour un évènement, cuisine maison',
+    category: 'buffet',
+  },
+  {
+    src: '/images/photosCC/Event-buffet_04.jpeg',
     alt: 'Buffet coloré et varié pour un évènement, cuisine maison',
     category: 'buffet',
   },
@@ -241,7 +310,7 @@ export const galleryImages: Photo[] = [
     category: 'buffet',
   },
   {
-    src: '/images/photosCC/Event-Buffet_07.jpeg',
+    src: '/images/photosCC/Event-buffet_07.jpeg',
     alt: 'Buffet généreux et convivial, cuisine de saison pour un évènement',
     category: 'buffet',
   },
@@ -251,8 +320,13 @@ export const galleryImages: Photo[] = [
     category: 'buffet',
   },
   {
-    src: '/images/photosCC/Event-mignardises_02.jpeg',
-    alt: 'Mignardises sucrées maison pour un évènement, pâtisseries fines',
+    src: '/images/photosCC/Event-buffet_09.jpeg',
+    alt: 'Buffet coloré et varié pour un évènement, cuisine maison',
+    category: 'buffet',
+  },
+  {
+    src: '/images/photosCC/Event-buffet_10.jpeg',
+    alt: 'Buffet coloré et varié pour un évènement, cuisine maison',
     category: 'buffet',
   },
   {

@@ -46,11 +46,14 @@ export function Header() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="accueil" className="flex items-center gap-2 group">
-            <span className="flex items-center justify-center w-10 h-10 rounded-full bg-terracotta-600 text-white transition-transform group-hover:scale-105">
-              <UtensilsCrossed size={20} />
-            </span>
-           
+            <img
+            src="/images/logo/fee-maison-logo-rond.png"
+            alt="Fée Maison"
+            className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover transition-transform group-hover:scale-125"
+            />
           </Link>
+          
+          
 
           {/* Desktop nav */}
           <nav className="hidden lg:flex items-center gap-1" aria-label="Navigation principale">

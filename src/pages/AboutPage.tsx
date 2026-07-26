@@ -41,8 +41,8 @@ export function AboutPage() {
               <h2 className="section-title mb-6">L'histoire de Fée Maison</h2>
               <div className="divider-left" />
               <p className="text-brown-600 leading-relaxed mb-4 text-base md:text-lg">
-                Avec Fée Maison, Catherine met la cuisine maison à votre service, pour votre
-                quotidien ou les moments importants. Son approche repose sur l'écoute, l'adaptation
+                Avec Fée Maison, Catherine cuisine pour votre quotidien ou les moments importants. 
+                Son approche repose sur l'écoute, l'adaptation
                 et le plaisir de préparer des plats simples, généreux et adaptés à chaque occasion.
               </p>
               <p className="text-brown-600 leading-relaxed mb-4">
@@ -51,8 +51,7 @@ export function AboutPage() {
                 contraintes, afin de vous proposer une cuisine qui vous ressemble.
               </p>
               <p className="text-brown-600 leading-relaxed">
-                Installée à Lannion, Catherine intervient dans le Trégor, les Côtes d'Armor et plus
-                largement en France selon les demandes.
+                I
               </p>
             </div>
             <div className="order-1 md:order-2">
@@ -78,39 +77,55 @@ export function AboutPage() {
           </div>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm">
-              <h3 className="font-serif text-lg text-brown-800 mb-3">Parcours</h3>
+              <h3 className="font-serif text-lg text-brown-800 mb-3">Un parcours atypique, guidé par la passion</h3>
               <p className="text-brown-600 text-sm leading-relaxed">
-                Information à compléter — Le parcours professionnel de Catherine sera détaillé ici
-                : formation, expériences culinaires, rencontres marquantes et cheminements qui l'ont
-                conduite à créer Fée Maison.
+                Rien ne me destinait à devenir cuisinière !
+                Des études en informatique, 20 ans dans les télécoms... Cela m'a apporté le sens de l'organisation, de la rigueur, de l'écoute et de l'anticipation.
+                Mais cuisiner a toujours été ma façon de prendre soin des autres, de créer du lien et de partager.
+                Et comme une passion ne disparaît jamais vraiment, j'ai ouvert mon propre salon de thé et tarterie. 
+                De la création des recettes à la fabrication, de l'accueil des clients à la gestion de l'entreprise, j'y ai appris qu'un repas peut laisser un souvenir durable lorsqu'il est préparé avec sincérité.
+                Aujourd'hui, j'ai décidé de continuer à cuisiner, et ce au plus près des gens. 
+                J'ai créé Fée Maison pour être au service de vos repas du quotidien comme de vos moments de fête.
               </p>
             </div>
             <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm">
-              <h3 className="font-serif text-lg text-brown-800 mb-3">Approche de la cuisine</h3>
+              <h3 className="font-serif text-lg text-brown-800 mb-3">Une cuisine qui commence bien avant les fourneaux</h3>
               <p className="text-brown-600 text-sm leading-relaxed">
-                Information à compléter — L'approche culinaire de Catherine sera présentée ici :
-                rapport aux produits, inspiration, cuisine de saison, équilibre entre simplicité et
-                gourmandise.
+                Pour moi, cuisiner ne consiste pas seulement à assembler des ingrédients.
+                Chaque plat commence par le choix des produits. 
+                Je privilégie autant que possible des producteurs locaux, des produits de saison et des ingrédients issus d'une agriculture respectueuse des hommes, des animaux et de la nature. 
+                J'aime connaître les personnes qui cultivent, élèvent ou fabriquent ce que je cuisine. 
+                
+                Mon rôle est de prolonger leur travail dans votre assiette, en respectant les produits et en les sublimant avec une cuisine généreuse, simple et pleine de saveurs.
+                Que ce soit pour du batch cooking, un anniversaire ou une réunion de famille, je conçois chaque prestation sur mesure, en tenant compte de vos envies, de vos habitudes et des personnes qui partageront ce repas.
               </p>
             </div>
             <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm">
-              <h3 className="font-serif text-lg text-brown-800 mb-3">Philosophie et valeurs</h3>
+              <h3 className="font-serif text-lg text-brown-800 mb-3">Une philosophie : cuisiner avec le cœur</h3>
               <p className="text-brown-600 text-sm leading-relaxed">
-                Information à compléter — La philosophie de Fée Maison sera développée ici : le sens
-                du service, le plaisir de bien faire, le lien entre cuisine et bien-être, le respect
-                des produits et des personnes.
+                Je suis convaincue que la cuisine est l'une des plus belles façons de transmettre de l'attention.
+                Un repas peut rassembler une famille, créer des souvenirs entre amis, célébrer un événement ou simplement alléger le quotidien. 
+                Derrière chaque plat que je prépare, il y a le désir de faire plaisir, de prendre soin et de créer un moment de partage.
+                Et au delà d'un bon repas, je souhaite transmettre une émotion : celle d'une cuisine sincère, généreuse et profondément humaine.
               </p>
             </div>
             <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm">
               <h3 className="font-serif text-lg text-brown-800 mb-3">Territoire d'intervention</h3>
               <p className="text-brown-600 text-sm leading-relaxed flex items-start gap-2">
-                <MapPin size={18} className="text-terracotta-500 flex-shrink-0 mt-0.5" />
-                <span>{siteConfig.interventionZone}.</span>
+                Installée à Lannion, j'interviens dans le Trégor pour vous soulager du quotidien.
+                Pour les évènements et séminaires, je peux me déplacer dans les Côtes d'Armor et plus
+                largement en France selon les demandes.
+                
               </p>
             </div>
           </div>
         </div>
       </section>
+
+      {/* à la place de "Installée..."
+                <MapPin size={18} className="text-terracotta-500 flex-shrink-0 mt-0.5" />
+                <span>{siteConfig.interventionZone}.</span> */
+      }
 
       {/* Engagements */}
       <section className="py-20 md:py-28 bg-cream-50">

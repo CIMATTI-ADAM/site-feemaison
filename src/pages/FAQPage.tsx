@@ -34,15 +34,15 @@ const faqItems = [
   },
   {
     q: 'Intervenez-vous pour plusieurs jours ?',
-    a: "Oui, Catherine peut intervenir sur plusieurs jours, notamment dans le cadre de séjours, de séminaires ou d'évènements sur plusieurs jours. La prestation est adaptée à la durée et au rythme du projet.",
+    a: "Oui, Catherine peut intervenir sur plusieurs jours, notamment dans le cadre de séjours, de séminaires ou tout autre évènement que vous organisez sur plusieurs jours. La prestation est adaptée à la durée et au rythme du projet.",
   },
   {
     q: "Pouvez-vous cuisiner lors d'un séjour yoga ou bien-être ?",
-    a: "Oui, c'est l'une des prestations proposées. Catherine prépare des repas équilibrés et adaptés au programme du séjour, avec une cuisine végétarienne ou selon vos besoins spécifiques.",
+    a: "Oui, c'est l'une des prestations proposées. Catherine prépare des repas équilibrés et adaptés au programme du séjour. Proposition d'un menu végétarien ou suivant vos demandes et vos besoins spécifiques.",
   },
   {
     q: 'Proposez-vous des prestations pour les entreprises ?',
-    a: "Oui, Fée Maison propose des prestations pour les séminaires, journées d'équipe, stages et formations : buffets, pauses gourmandes, repas d'équipe et menus sur plusieurs jours.",
+    a: "Oui, Fée Maison propose des prestations pour les séminaires, journées d'équipe, stages et formations : buffets, pauses gourmandes, repas d'équipe. Pour une prestation ponctuelle ou sur plusieurs jours.",
   },
   {
     q: 'Comment obtenir un devis ?',
@@ -50,7 +50,7 @@ const faqItems = [
   },
   {
     q: 'Quel acompte est demandé ?',
-    a: "Les modalités d'acompte sont indiquées dans les Conditions générales de vente et confirmées lors de la validation du devis. Le cas échéant, un acompte peut être demandé pour confirmer la réservation.",
+    a: "Les modalités d'acompte sont indiquées dans les Conditions générales de vente et confirmées lors de la validation du devis. Pour les évènements et séjours, en général un acompte de 30% est demandé et confirme la réservation.",
   },
   {
     q: "Que se passe-t-il en cas d'annulation ?",
@@ -97,7 +97,10 @@ export function FAQPage() {
             <h1 className="font-serif text-4xl md:text-5xl text-brown-800 mb-4">Questions fréquentes</h1>
             <div className="divider" />
             <p className="section-subtitle">
-              Vous ne trouvez pas votre réponse ? N'hésitez pas à contacter Fée Maison directement.
+              Vous ne trouvez pas votre réponse ?
+            </p>
+            <p className="section-subtitle">
+              N'hésitez pas à contacter Fée Maison directement.
             </p>
           </div>
 

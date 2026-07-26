@@ -28,9 +28,12 @@ export function Footer() {
           {/* Colonne identité */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <span className="flex items-center justify-center w-10 h-10 rounded-full bg-terracotta-600 text-white">
-                <UtensilsCrossed size={20} />
-              </span>
+              <img
+                src="/images/logo/fee-maison-logo-rond.png"
+                alt="Fée Maison"
+                className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover transition-transform hover:scale-125"
+                />
+                
               <span className="font-serif text-xl text-cream-50 font-semibold">
                 {siteConfig.businessName}
               </span>
