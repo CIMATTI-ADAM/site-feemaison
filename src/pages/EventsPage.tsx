@@ -86,7 +86,7 @@ export function EventsPage() {
       </section>
 
       {/* Trois blocs de prestations */}
-      <section className="py-20 md:py-28 bg-beige-50">
+      <section className="py-20 md:py-28 bg-section-beige">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="section-title mb-4">Trois univers de prestations</h2>
@@ -132,7 +132,7 @@ export function EventsPage() {
       </section>
 
       {/* Exemples de formats */}
-      <section className="py-20 bg-beige-50">
+      <section className="py-20 bg-section-rose">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="section-title mb-4">Exemples de formats</h2>

@@ -78,7 +78,7 @@ export function HomePage() {
       </section>
 
       {/* Deux façons de vous accompagner */}
-      <section className="py-20 md:py-28 bg-beige-50">
+      <section className="py-20 md:py-28 bg-section-beige">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="section-title mb-4">Deux façons de vous accompagner</h2>
@@ -181,7 +181,7 @@ export function HomePage() {
       <TestimonialCarousel />
 
       {/* Photos en aperçu */}
-      <section className="py-20 md:py-28 bg-beige-50">
+      <section className="py-20 md:py-28 bg-cream-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="section-title mb-4">Un aperçu de l'univers de Fée Maison</h2>

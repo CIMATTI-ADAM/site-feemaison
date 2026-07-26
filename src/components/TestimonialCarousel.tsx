@@ -253,7 +253,7 @@ export function TestimonialCarousel() {
   ]);
 
   return (
-    <section className="overflow-hidden bg-cream-100 py-20 md:py-28">
+    <section className="overflow-hidden bg-section-rose py-20 md:py-28">
       <div className="mx-auto mb-12 max-w-3xl px-4 text-center">
         <p
           className="

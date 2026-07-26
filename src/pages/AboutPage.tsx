@@ -69,7 +69,7 @@ export function AboutPage() {
       </section>
 
       {/* Parcours et approche */}
-      <section className="py-20 md:py-28 bg-beige-50">
+      <section className="py-20 md:py-28 bg-section-beige">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="section-title mb-4">Parcours et approche</h2>

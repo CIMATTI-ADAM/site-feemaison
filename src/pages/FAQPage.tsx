@@ -91,7 +91,7 @@ export function FAQPage() {
 
   return (
     <div className="pt-20 md:pt-24">
-      <section className="py-16 md:py-24 bg-cream-50">
+      <section className="py-16 md:py-24 bg-cream-100">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h1 className="font-serif text-4xl md:text-5xl text-brown-800 mb-4">Questions fréquentes</h1>

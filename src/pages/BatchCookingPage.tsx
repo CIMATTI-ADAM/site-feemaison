@@ -79,7 +79,7 @@ export function BatchCookingPage() {
       </section>
 
       {/* Comment se déroule une prestation */}
-      <section className="py-20 md:py-28 bg-beige-50">
+      <section className="py-20 md:py-28 bg-section-beige">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="section-title mb-4">Comment se déroule une prestation ?</h2>
@@ -120,7 +120,7 @@ export function BatchCookingPage() {
       </section>
 
       {/* Pour qui ? */}
-      <section className="py-20 md:py-28 bg-sage-50">
+      <section className="py-20 md:py-28 bg-section-rose">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="section-title mb-4">Pour qui ?</h2>

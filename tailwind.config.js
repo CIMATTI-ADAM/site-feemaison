@@ -65,6 +65,11 @@ export default {
           900: '#584137',
         },
 
+        section: {
+          beige: '#F3E3D7',
+          rose: '#F4DFDD',
+        },
+
         /**
          * BORDEAUX FÉE MAISON
          *
