@@ -1,0 +1,1142 @@
+<!doctype html>
+
+<html lang="fr">
+
+  <head>
+
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+
+    <title>
+      Carte Événements - Fée Maison
+    </title>
+
+
+    <!--
+      Feuille de style propre au livret Events.
+    -->
+    <link
+      rel="stylesheet"
+      href="./style.css"
+    />
+
+
+    <!--
+      Footer commun Fée Maison.
+
+      IMPORTANT :
+      on utilise exactement le même footer partagé
+      que dans le livret Batch.
+    -->
+    <link
+      rel="stylesheet"
+      href="/theme/fee-maison-footer.css"
+    />
+
+  </head>
+
+
+  <body>
+
+
+    <!-- ======================================================
+         BOUTONS D'IMPRESSION
+         ====================================================== -->
+
+    <div class="print-toolbar">
+
+
+      <button
+        type="button"
+        class="print-button"
+        onclick="printMenu(true)"
+      >
+        Imprimer avec fond crème
+      </button>
+
+
+      <button
+        type="button"
+        class="print-button print-button-light"
+        onclick="printMenu(false)"
+      >
+        Imprimer sans fond
+      </button>
+
+
+    </div>
+
+
+
+    <!-- ======================================================
+         PAGE A4
+         ====================================================== -->
+
+    <main class="menu-shell">
+
+      <section
+        id="menu-page"
+        class="menu-page"
+      ></section>
+
+    </main>
+
+
+
+    <!-- ======================================================
+         CONFIGURATION EVENTS
+         ====================================================== -->
+
+    <script src="./eventConfig.js"></script>
+
+
+    <!-- ======================================================
+         FOOTER COMMUN FÉE MAISON
+         ====================================================== -->
+
+    <script src="/theme/fee-maison-footer.js"></script>
+
+
+
+    <script>
+
+
+      /* ======================================================
+         CONFIGURATION
+         ====================================================== */
+
+      const config =
+        window.eventConfig;
+
+
+
+      /* ======================================================
+         IMPRESSION
+         ====================================================== */
+
+      function printMenu(withBackground) {
+
+        const body =
+          document.body;
+
+
+        /*
+         * Impression avec fond crème.
+         */
+
+        if (withBackground) {
+
+          body.classList.remove(
+            "print-without-background"
+          );
+
+        }
+
+        /*
+         * Impression sans le grand fond décoratif.
+         */
+
+        else {
+
+          body.classList.add(
+            "print-without-background"
+          );
+
+        }
+
+
+        /*
+         * Petit délai pour laisser Chrome
+         * appliquer le style avant impression.
+         */
+
+        window.setTimeout(() => {
+
+          window.print();
+
+        }, 100);
+
+      }
+
+
+
+      /*
+       * Après impression ou annulation,
+       * on remet automatiquement l'affichage normal.
+       */
+
+      window.addEventListener(
+        "afterprint",
+        () => {
+
+          document.body.classList.remove(
+            "print-without-background"
+          );
+
+        }
+      );
+
+
+
+      /* ======================================================
+         SÉCURISATION DES TEXTES
+         ====================================================== */
+
+      function escapeHtml(value) {
+
+        return String(value ?? "")
+
+          .replaceAll(
+            "&",
+            "&amp;"
+          )
+
+          .replaceAll(
+            "<",
+            "&lt;"
+          )
+
+          .replaceAll(
+            ">",
+            "&gt;"
+          )
+
+          .replaceAll(
+            '"',
+            "&quot;"
+          )
+
+          .replaceAll(
+            "'",
+            "&#039;"
+          );
+
+      }
+
+
+
+      /* ======================================================
+         APPLICATION DU THÈME
+         ====================================================== */
+
+      function applyTheme() {
+
+        const root =
+          document.documentElement;
+
+
+        const colors =
+          config.colors || {};
+
+
+        const watermark =
+          config.watermark || {};
+
+
+        /*
+         * Même système de variables CSS
+         * que dans le livret Batch.
+         */
+
+        const variables = {
+
+
+          "--burgundy":
+            colors.burgundy,
+
+
+          "--burgundy-dark":
+            colors.burgundyDark,
+
+
+          "--burgundy-soft":
+            colors.burgundySoft,
+
+
+          "--cream":
+            colors.cream,
+
+
+          "--cream-light":
+            colors.creamLight,
+
+
+          "--cream-soft":
+            colors.creamSoft,
+
+
+          "--duck-blue":
+            colors.duckBlue,
+
+
+          "--duck-blue-light":
+            colors.duckBlueLight,
+
+
+          "--gold":
+            colors.gold,
+
+
+          "--gold-light":
+            colors.goldLight,
+
+
+          "--green":
+            colors.green,
+
+
+          "--green-light":
+            colors.greenLight,
+
+
+          "--text":
+            colors.text,
+
+
+          "--text-soft":
+            colors.textSoft,
+
+
+          "--white":
+            colors.white,
+
+
+          "--watermark-opacity":
+            watermark.opacity,
+
+
+          "--watermark-width":
+            watermark.width,
+
+
+          "--watermark-position-x":
+            watermark.positionX,
+
+
+          "--watermark-position-y":
+            watermark.positionY,
+
+        };
+
+
+        Object
+          .entries(variables)
+          .forEach(
+            ([name, value]) => {
+
+              if (
+                value !== undefined &&
+                value !== null &&
+                value !== ""
+              ) {
+
+                root.style.setProperty(
+                  name,
+                  String(value)
+                );
+
+              }
+
+            }
+          );
+
+      }
+
+
+
+      /* ======================================================
+         INFORMATIONS D'UN PICTOGRAMME
+         ====================================================== */
+
+      function tagInfo(tagKey) {
+
+        return (
+
+          config.tagLabels?.[tagKey]
+
+          ||
+
+          {
+
+            label:
+              tagKey,
+
+            symbol:
+              "•",
+
+            cssClass:
+              "",
+
+          }
+
+        );
+
+      }
+
+
+
+      /* ======================================================
+         PETITS PICTOGRAMMES À CÔTÉ DES PLATS
+         ====================================================== */
+
+      function createInlineTags(
+        tags = []
+      ) {
+
+        if (!tags.length) {
+
+          return "";
+
+        }
+
+
+        return `
+
+          <span class="inline-tags">
+
+            ${tags
+
+              .map(
+                (tagKey) => {
+
+                  const tag =
+                    tagInfo(tagKey);
+
+
+                  return `
+
+                    <span
+                      class="
+                        inline-tag
+                        ${escapeHtml(
+                          tag.cssClass
+                        )}
+                      "
+                      title="${escapeHtml(
+                        tag.label
+                      )}"
+                      aria-label="${escapeHtml(
+                        tag.label
+                      )}"
+                    >
+
+                      ${escapeHtml(
+                        tag.symbol
+                      )}
+
+                    </span>
+
+                  `;
+
+                }
+              )
+
+              .join("")}
+
+          </span>
+
+        `;
+
+      }
+
+
+
+      /* ======================================================
+         UNE PROPOSITION DE PLAT
+         ====================================================== */
+
+      function createDish(dish) {
+
+
+        return `
+
+          <article class="event-dish">
+
+
+            <!--
+              Première ligne :
+              nom du plat + pictogrammes
+            -->
+
+            <div class="dish-title-line">
+
+
+              <span
+                class="dish-bullet"
+                aria-hidden="true"
+              >
+                •
+              </span>
+
+
+              <span class="dish-name">
+
+                ${escapeHtml(
+                  dish.name
+                )}
+
+              </span>
+
+
+              ${createInlineTags(
+                dish.tags || []
+              )}
+
+
+            </div>
+
+
+
+            <!--
+              Deuxième ligne :
+              ingrédients, garniture,
+              accompagnement ou dressage.
+            -->
+
+            ${
+              dish.details
+
+                ? `
+
+                  <p class="dish-details">
+
+                    ${escapeHtml(
+                      dish.details
+                    )}
+
+                  </p>
+
+                `
+
+                : ""
+            }
+
+
+          </article>
+
+        `;
+
+      }
+
+
+
+      /* ======================================================
+         UNE CATÉGORIE :
+         ENTRÉES / PLATS / DESSERTS
+         ====================================================== */
+
+      function createCategory(category) {
+
+
+        const showIcon =
+
+          config.display
+            ?.showCategoryIcons
+            !== false;
+
+
+        return `
+
+          <section
+            class="event-category"
+            data-id="${escapeHtml(
+              category.id
+            )}"
+          >
+
+
+            <header class="category-header">
+
+
+              ${
+                showIcon
+
+                  ? `
+
+                    <span
+                      class="category-icon"
+                      aria-hidden="true"
+                    >
+
+                      ${escapeHtml(
+                        category.icon || "•"
+                      )}
+
+                    </span>
+
+                  `
+
+                  : `<span></span>`
+              }
+
+
+
+              <div
+                class="category-title-wrap"
+              >
+
+
+                <h2
+                  class="category-title"
+                >
+
+                  ${escapeHtml(
+                    category.title
+                  )}
+
+                </h2>
+
+
+                <div
+                  class="category-rule"
+                ></div>
+
+
+              </div>
+
+
+            </header>
+
+
+
+            <!--
+              Une seule colonne.
+
+              Les quatre propositions
+              apparaissent les unes sous les autres.
+            -->
+
+            <div class="dishes-list">
+
+
+              ${(category.dishes || [])
+
+                .map(createDish)
+
+                .join("")}
+
+
+            </div>
+
+
+          </section>
+
+        `;
+
+      }
+
+
+
+      /* ======================================================
+         LÉGENDE
+         ====================================================== */
+
+      function createLegend() {
+
+
+        const enabled =
+
+          config.legend
+            ?.enabled !== false
+
+          &&
+
+          config.display
+            ?.showLegend !== false;
+
+
+        if (!enabled) {
+
+          return "";
+
+        }
+
+
+        const items =
+          config.legend?.items || [];
+
+
+        return `
+
+          <aside
+            class="legend-card"
+            aria-label="Légende"
+          >
+
+
+            <div class="legend-grid">
+
+
+              ${items
+
+                .map(
+                  (tagKey) => {
+
+
+                    const tag =
+                      tagInfo(tagKey);
+
+
+                    return `
+
+                      <div
+                        class="legend-item"
+                      >
+
+
+                        <span
+                          class="
+                            legend-symbol
+                            ${escapeHtml(
+                              tag.cssClass
+                            )}
+                          "
+                          aria-hidden="true"
+                        >
+
+                          ${escapeHtml(
+                            tag.symbol
+                          )}
+
+                        </span>
+
+
+
+                        <span
+                          class="legend-label"
+                        >
+
+                          ${escapeHtml(
+                            tag.label
+                          )}
+
+                        </span>
+
+
+                      </div>
+
+                    `;
+
+                  }
+                )
+
+                .join("")}
+
+
+            </div>
+
+
+          </aside>
+
+        `;
+
+      }
+
+
+
+      /* ======================================================
+         FILIGRANE
+         ====================================================== */
+
+      function createWatermark() {
+
+
+        const enabled =
+
+          config.watermark
+            ?.enabled !== false
+
+          &&
+
+          config.display
+            ?.showWatermark !== false
+
+          &&
+
+          config.business
+            ?.watermarkUrl;
+
+
+        if (!enabled) {
+
+          return "";
+
+        }
+
+
+        return `
+
+          <img
+            class="watermark"
+
+            src="${escapeHtml(
+              config.business.watermarkUrl
+            )}"
+
+            alt=""
+
+            aria-hidden="true"
+          />
+
+        `;
+
+      }
+
+
+
+      /* ======================================================
+         RENDU COMPLET DU LIVRET EVENTS
+         ====================================================== */
+
+      function renderMenu() {
+
+
+        applyTheme();
+
+
+        const business =
+          config.business || {};
+
+
+        const documentConfig =
+          config.document || {};
+
+
+        const categories =
+          config.categories || [];
+
+
+
+        /*
+         * Titre de l'onglet Chrome.
+         */
+
+        document.title =
+
+          `${documentConfig.menuTitle || "Carte Événements"} - `
+
+          +
+
+          `${business.name || "Fée Maison"}`;
+
+
+
+        /*
+         * Construction de toute la page.
+         */
+
+        document
+          .getElementById(
+            "menu-page"
+          )
+          .innerHTML = `
+
+
+            <!-- ===============================================
+                 DÉCORS DE PAGE
+                 =============================================== -->
+
+            <div
+              class="page-decor"
+            ></div>
+
+
+            ${createWatermark()}
+
+
+
+            <div
+              class="page-content"
+            >
+
+
+
+              <!-- =============================================
+                   EN-TÊTE
+                   COPIÉ SUR LA STRUCTURE DU BATCH
+                   ============================================= -->
+
+              <header
+                class="menu-header"
+              >
+
+
+                <div
+                  class="top-label-row"
+                >
+
+
+                  <span
+                    class="top-label-line"
+                  ></span>
+
+
+
+                  <p
+                    class="top-label"
+                  >
+
+                    ${escapeHtml(
+                      documentConfig.topLabel
+                    )}
+
+                  </p>
+
+
+
+                  <span
+                    class="top-label-line"
+                  ></span>
+
+
+                </div>
+
+
+
+                <h1
+                  class="brand-title"
+                >
+
+                  ${escapeHtml(
+                    documentConfig.title
+                  )}
+
+                </h1>
+
+
+
+                <p
+                  class="brand-slogan"
+                >
+
+                  ${escapeHtml(
+                    documentConfig.slogan
+                  )}
+
+                </p>
+
+
+
+                <div
+                  class="menu-heading-row"
+                >
+
+
+                  <span
+                    class="menu-heading-line"
+                  ></span>
+
+
+
+                  <h2
+                    class="menu-title"
+                  >
+
+                    ${escapeHtml(
+                      documentConfig.menuTitle
+                    )}
+
+                  </h2>
+
+
+
+                  <span
+                    class="menu-season-separator"
+                  >
+                    •
+                  </span>
+
+
+
+                  <p
+                    class="menu-season"
+                  >
+
+                    ${escapeHtml(
+                      documentConfig.season
+                    )}
+
+                  </p>
+
+
+
+                  <span
+                    class="menu-heading-line"
+                  ></span>
+
+
+                </div>
+
+
+
+                ${
+                  config.display
+                    ?.showIntroduction
+                    !== false
+
+                    ? `
+
+                      <p
+                        class="menu-introduction"
+                      >
+
+                        ${escapeHtml(
+                          documentConfig
+                            .introduction
+                        )}
+
+                      </p>
+
+                    `
+
+                    : ""
+                }
+
+
+              </header>
+
+
+
+              <!-- =============================================
+                   CONTENU EVENTS
+                   ============================================= -->
+
+              <div
+                class="menu-main event-main"
+              >
+
+
+                <div
+                  class="event-categories"
+                >
+
+
+                  ${categories
+
+                    .map(createCategory)
+
+                    .join("")}
+
+
+                </div>
+
+
+
+                <!-- ===========================================
+                     LÉGENDE 4 COLONNES
+                     =========================================== -->
+
+                ${createLegend()}
+
+
+              </div>
+
+
+
+              <!-- =============================================
+                   FOOTER FÉE MAISON
+
+                   IMPORTANT :
+                   nous n'en reconstruisons plus un autre.
+
+                   C'est exactement le composant partagé
+                   utilisé par le livret Batch.
+                   ============================================= -->
+
+              ${
+
+                config.display
+                  ?.showFooter !== false
+
+                  ? window.createFeeMaisonFooter({
+
+                      business:
+                        business,
+
+
+                      personalizationText:
+                        documentConfig
+                          .personalizationText,
+
+
+                      footerNote:
+                        documentConfig
+                          .seasonalNote,
+
+
+                      displayConfig:
+                        config.display || {}
+
+                    })
+
+                  : ""
+
+              }
+
+
+            </div>
+
+          `;
+
+      }
+
+
+
+      /* ======================================================
+         CONTRÔLE DE CHARGEMENT
+         ====================================================== */
+
+      if (!config) {
+
+
+        document
+          .getElementById(
+            "menu-page"
+          )
+          .innerHTML = `
+
+            <div
+              style="
+                padding: 40px;
+                font-family: Arial, sans-serif;
+              "
+            >
+
+              <h1>
+                Erreur de configuration
+              </h1>
+
+              <p>
+                Le fichier eventConfig.js
+                n’a pas été chargé.
+              </p>
+
+            </div>
+
+          `;
+
+      }
+
+      else {
+
+
+        /*
+         * Génération normale de la page.
+         */
+
+        renderMenu();
+
+      }
+
+
+    </script>
+
+
+  </body>
+
+</html>
