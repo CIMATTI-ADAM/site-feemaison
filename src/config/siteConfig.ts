@@ -9,9 +9,11 @@ export const siteConfig = {
   // --- IDENTITÉ DE L'ENTREPRISE ---
   businessName: "Fée Maison",
   professionalName: "Catherine Cimatti-Adam",
-  tagline: "Une cuisine maison, généreuse et personnalisée, directement chez vous",
-  subtitle:
-    "Catherine de Fée Maison vous accompagne au quotidien avec le batchcooking à domicile et imagine les repas de vos évènements, séjours et moments de partage.",
+  
+  tagline: "Moins à gérer. Plus à savourer.",
+  //tagline: "Une cuisine maison, généreuse et personnalisée, directement chez vous",
+  subtitle: "Des repas du quotidien aux grandes tablées, je cuisine chez vous et pour vous avec des produits frais et soigneusement choisis afin de vous libérer du temps et de l’énergie.",
+  //subtitle: "Catherine de Fée Maison vous accompagne au quotidien avec le batchcooking à domicile et imagine les repas de vos évènements, séjours et moments de partage.",
 
   // --- COORDONNÉES ---
   contact: {

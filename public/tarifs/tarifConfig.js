@@ -36,7 +36,7 @@ const tarifConfig = {
 
   display: {
     showLogoInFooter: true,
-    showPersonalizationBlock: true,
+    showPersonalizationBlock: false,
     showWatermark: true,
     showFooterNote: true
   },
@@ -92,13 +92,13 @@ const tarifConfig = {
             title: "Formule 3 plats",
 
             description:
-              "3 recettes différentes préparées en 4 parts, soit 12 portions au total.",
+              "3 recettes différentes préparées en 4 parts, soit 12 portions au total",
 
-            price: "À renseigner",
+            price: "140€ ",
 
-            fullPrice: "",
+            fullPrice: "ou 70€ après crédit d'impôt",
 
-            taxNote: "",
+            taxNote: "(prix TTC))",
 
             color: "gold"
           },
@@ -107,13 +107,13 @@ const tarifConfig = {
             title: "Formule 4 plats",
 
             description:
-              "4 recettes différentes préparées en 4 parts, soit 16 portions au total.",
+              "4 recettes différentes préparées en 4 parts, soit 16 portions au total",
 
-            price: "À renseigner",
+            price: "180€",
 
-            fullPrice: "",
+            fullPrice: "ou 90€ après crédit d'impôt",
 
-            taxNote: "",
+            taxNote: "(prix TTC)",
 
             color: "sage"
           },
@@ -122,13 +122,13 @@ const tarifConfig = {
             title: "Formule 5 plats",
 
             description:
-              "5 recettes différentes préparées en 4 parts, soit 20 portions au total.",
+              "5 recettes différentes préparées en 4 parts, soit 20 portions au total",
 
-            price: "À renseigner",
+            price: "220€",
 
-            fullPrice: "",
+            fullPrice: "ou 110€ après crédit d'impôt",
 
-            taxNote: "",
+            taxNote: "(prix TTC)",
 
             color: "terracotta"
           },
@@ -139,23 +139,24 @@ const tarifConfig = {
             description:
               "Fée Maison peut également effectuer les courses nécessaires à la réalisation de la prestation.",
 
-            price: "À renseigner",
+            price: "50€",
 
-            fullPrice: "",
+            fullPrice: "ou 25€ après crédit d'impôt",
 
-            taxNote: "",
+            taxNote: "Le coût des denrées achetées sera à rembourser",
 
             color: "duck"
           }
         ]
       },
-
+/*
       note:
         "Les ingrédients ne sont pas compris dans le tarif de la prestation",
 
       highlight:
         "Une formule adaptée aux familles ou aux couples souhaitant prévoir plusieurs repas. Pour les personnes seules, il faudra congeler une partie des préparations."
-    },
+ */
+        },
 
     /* ========================================================
        PAGE 2 — PLATS DE 2 PARTS

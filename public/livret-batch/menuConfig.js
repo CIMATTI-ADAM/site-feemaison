@@ -81,7 +81,7 @@ window.menuConfig = {
 
     menuTitle: "Carte des plats",
 
-    season: "Juillet & Août 2026",
+    season: "Septembre 2026",
 
     introduction:
       "Des repas faits maison, préparés chez vous avec des produits bruts, locaux et de saison, adaptés à vos envies et à vos habitudes alimentaires",
@@ -164,7 +164,7 @@ window.menuConfig = {
     },
 
     cold: {
-      label: "Repas froid pour l'été",
+      label: "Repas froid pour l'été de septembre !",
       symbol: "☀️",
       cssClass: "cold",
     },
@@ -225,13 +225,9 @@ window.menuConfig = {
           name: "Taboulé",
           tags: ["bestseller", "cold", "veggie"],
         },
-        {
-          name: "Salade de melon, fenouil mariné au vinaigre de cidre, olives noires et câpres",
-          tags: ["bestseller", "cold", "veggie"],
-        },
 
         {
-          name: "Parmiggiana d'aubergines, accompagnée de tagliatelles",
+          name: "Tagliatelles aux poireaux, Parmesan et Coppa (façon \"carbonanara\")",
           tags: ["bestseller", "veggie"],
         },
 
@@ -281,7 +277,7 @@ window.menuConfig = {
         },
 
         {
-          name: "Tomates farcies au veau et tagliatelles",
+          name: "Joues de porc au Cidre et pommes et écrasée de pommes de terre",
           tags: [],
         },
       ],
@@ -320,11 +316,6 @@ window.menuConfig = {
           tags: ["veggie"],
         },
 
-         {
-          name:
-            "Quiche aux champignons, lardons et fromage moelleux",
-          tags: [],
-        },
       ],
     },
 
@@ -361,11 +352,7 @@ window.menuConfig = {
           tags: [],
         },
 
-        {
-          name:
-            "Oeufs durs aux épinards et béchamel",
-          tags: [],
-        },
+       
       ],
     },
 
@@ -385,29 +372,21 @@ window.menuConfig = {
         },
 
         {
-          name: "Gâteau moelleux au chocolat",
+          name: "Gâteau moelleux au chocolat recouvert de ganache",
           tags: [],
         },
 
         {
-          name: "Tarte à la rhubarbe",
+          name: "Clafoutis aux pêches et amandes",
           tags: [],
         },
 
         {
-          name: "Clafoutis aux abricots",
+          name: "Crumble aux pommes",
           tags: [],
         },
 
-        {
-          name: "Clafoutis aux abricots",
-          tags: [],
-        },
-
-        {
-          name: "Clafoutis aux abricots",
-          tags: [],
-        },
+        
       ],
     },
 
@@ -415,7 +394,7 @@ window.menuConfig = {
     {
       id: "categorie-suppl",
 
-      title: "En plus...",
+      title: "Des légumes... ",
 
       icon: "✦",
 
@@ -423,8 +402,8 @@ window.menuConfig = {
 
       recipes: [
         {
-          name: "bla bla",
-          tags: [],
+          name: "Légumes d'été confits (ratatouille) et riz",
+          tags: ["veggie"],
         },
 
         

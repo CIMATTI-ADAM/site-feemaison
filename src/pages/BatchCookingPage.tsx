@@ -18,11 +18,12 @@ const benefits = [
 ];
 
 const steps = [
-  'Échange sur vos besoins, vos habitudes et vos préférences.',
-  'Proposition ou validation des menus.',
-  'Organisation des courses selon la formule retenue.',
-  'Préparation des plats directement à votre domicile.',
-  'Rangement, étiquetage et conseils de conservation.',
+  'On échange sur vos besoins, vos habitudes et vos préférences.',
+  'Vous choisissez les menus sur une base de propositions.',
+  'Je vous fournis la liste des ingrédients nécessaires.',
+  'A votre convenance, je peux réaliser les courses.',
+  'Je viens préparer les plats directement à votre domicile.',
+  'Vous trouverez des boites rangées, étiquetées et une fiche de conseils de conservation.',
 ];
 
 const targetAudience = [
@@ -166,6 +167,44 @@ export function BatchCookingPage() {
           
       </div>
       </section>
+
+
+
+{/* Carte des plats */}
+<section className="py-20 md:py-28 bg-cream-50">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div className="flex justify-center">
+      <img
+        src="/images/photosCC/Carte.jpg"
+        alt="Carte des plats proposés en Batchcooking par Fée Maison"
+        className="w-full max-w-4xl h-auto rounded-2xl shadow-md"
+      />
+    </div>
+
+  </div>
+</section>
+
+            
+{/* Tarifs */}
+<section className="py-20 md:py-28 bg-cream-100">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div className="flex justify-center">
+      <img
+        src="/images/photosCC/Tarifs.jpg"
+        alt="Tarifs des prestations Batchcooking deFée Maison"
+        className="w-full max-w-4xl h-auto rounded-2xl shadow-md"
+      />
+    </div>
+
+  </div>
+</section>            
+            
+          
+  
+
+
 
       {/* Crédit d'impôt */}
       {siteConfig.creditImpot.enabled && <CreditImpot />}

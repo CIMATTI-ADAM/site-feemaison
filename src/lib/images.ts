@@ -8,7 +8,7 @@
 export type Photo = {
   src: string;
   alt: string;
-  category: 'portrait' | 'plats' | 'buffet' | 'groupe' | 'preparation' | 'courses' | 'frigo' | 'service' | 'cheffe_privee';
+  category: 'portrait' | 'plats' | 'buffet' | 'groupe' | 'preparation' | 'courses' | 'frigo' | 'service' | 'cheffe_privee' ;
 };
 
 // Hero — sélection des images les plus lumineuses et immersives
@@ -45,6 +45,8 @@ export const aboutImages: Photo[] = [
   },
 ];
 
+
+
 // Batchcooking — plats préparés, courses, frigo, étiquetage
 export const batchcookingImages: Photo[] = [
   {
@@ -68,10 +70,21 @@ export const batchcookingImages: Photo[] = [
     category: 'plats',
   },
   {
+    src: '/images/photosCC/batch-plats_prepares_05.jpeg',
+    alt: 'Plats préparés chez vous pour toute la semaine, batchcooking Fée Maison',
+    category: 'plats',
+  },
+  {
+    src: '/images/photosCC/batch-plats_prepares_06.jpeg',
+    alt: 'Des quiches salées de Fée Maison',
+    category: 'plats',
+  },
+  {
     src: '/images/photosCC/batch-frigo_01.jpeg',
     alt: 'Réfrigérateur rangé avec les repas de la semaine préparés par le batchcooking à domicile',
     category: 'frigo',
   },
+   
 ];
 
 // Évènements — buffets, repas de groupe, tables dressées
